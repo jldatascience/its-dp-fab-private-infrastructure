@@ -1,0 +1,47 @@
+# Référentiel des identités par environnement — AUCUNE valeur secrète
+# Source : Service principal par environnement ; Application IDs recoupés avec les anciens deploy.py (ITG, PPR, PRD identiques).
+servicePrincipals:
+  sp-fabric-dev:
+    environment: DEV
+    displayName: "FR-DEV-Data Platform-RITM6601337"   # CONFIRMÉ
+    applicationId: 0820817b-afb5-4c0f-853d-5dde9c6ccd7d   # CONFIRMÉ (identifiant non secret)
+    globalRequest: RITM6601337   # CONFIRMÉ
+    applicationService: Development   # mapping des services applicatifs imposé par le Global
+    usage: ["publication des items Fabric (CD)"]   # DEV : jamais utilisé par la CD (devMode skip)
+    authMode: secret   # actuel : secret client lu dans le Key Vault ; cible : fédération ([A_CONFIRMER_MICK])
+    keyVaultSecrets: [DEV-AZURE-CLIENT-ID, DEV-AZURE-CLIENT-SECRET, DEV-AZURE-TENANT-ID]
+    fabricRoles: null   # [A_VERIFIER] Quoi : rôles Fabric du SPN (Contributor sur les workspaces de l’environnement, User sur les connexions) | Pourquoi : moindre privilège | Qui : équipe produit | Où : API Fabric roleAssignments | Bloquant : non
+    terraformUsage: null   # [A_CONFIRMER_MICK] Quoi : identité de déploiement Terraform (même SPN ou identité dédiée) | Pourquoi : séparation des privilèges infra / items | Qui : Mick / sécurité | Où : standard de la refonte | Bloquant : oui
+  sp-fabric-itg:
+    environment: ITG
+    displayName: "FR-QA-Data Platform-RITM6601332"   # CONFIRMÉ
+    applicationId: bf2e1f9f-b18c-481f-9400-7eb8caee3d5f   # CONFIRMÉ (identifiant non secret)
+    globalRequest: RITM6601332   # CONFIRMÉ
+    applicationService: QA   # mapping des services applicatifs imposé par le Global
+    usage: ["publication des items Fabric (CD)"]
+    authMode: secret   # actuel : secret client lu dans le Key Vault ; cible : fédération ([A_CONFIRMER_MICK])
+    keyVaultSecrets: [ITG-AZURE-CLIENT-ID, ITG-AZURE-CLIENT-SECRET, ITG-AZURE-TENANT-ID]
+    fabricRoles: null   # [A_VERIFIER] Quoi : rôles Fabric du SPN (Contributor sur les workspaces de l’environnement, User sur les connexions) | Pourquoi : moindre privilège | Qui : équipe produit | Où : API Fabric roleAssignments | Bloquant : non
+    terraformUsage: null   # [A_CONFIRMER_MICK] Quoi : identité de déploiement Terraform (même SPN ou identité dédiée) | Pourquoi : séparation des privilèges infra / items | Qui : Mick / sécurité | Où : standard de la refonte | Bloquant : oui
+  sp-fabric-ppr:
+    environment: PPR
+    displayName: "FR-STAG-Data Platform-RITM6601335"   # CONFIRMÉ
+    applicationId: 72256408-a41b-4a81-ab3a-021e2c5fbcb6   # CONFIRMÉ (identifiant non secret)
+    globalRequest: RITM6601335   # CONFIRMÉ
+    applicationService: Staging   # mapping des services applicatifs imposé par le Global
+    usage: ["publication des items Fabric (CD)"]
+    authMode: secret   # actuel : secret client lu dans le Key Vault ; cible : fédération ([A_CONFIRMER_MICK])
+    keyVaultSecrets: [PPR-AZURE-CLIENT-ID, PPR-AZURE-CLIENT-SECRET, PPR-AZURE-TENANT-ID]
+    fabricRoles: null   # [A_VERIFIER] Quoi : rôles Fabric du SPN (Contributor sur les workspaces de l’environnement, User sur les connexions) | Pourquoi : moindre privilège | Qui : équipe produit | Où : API Fabric roleAssignments | Bloquant : non
+    terraformUsage: null   # [A_CONFIRMER_MICK] Quoi : identité de déploiement Terraform (même SPN ou identité dédiée) | Pourquoi : séparation des privilèges infra / items | Qui : Mick / sécurité | Où : standard de la refonte | Bloquant : oui
+  sp-fabric-prd:
+    environment: PRD
+    displayName: "FR-PROD-Data Platform-RITM6601339"   # CONFIRMÉ
+    applicationId: 1411b722-4c42-44ce-a52a-b070611bd984   # CONFIRMÉ (identifiant non secret)
+    globalRequest: RITM6601339   # CONFIRMÉ
+    applicationService: Production   # mapping des services applicatifs imposé par le Global
+    usage: ["publication des items Fabric (CD)"]
+    authMode: secret   # actuel : secret client lu dans le Key Vault ; cible : fédération ([A_CONFIRMER_MICK])
+    keyVaultSecrets: [PRD-AZURE-CLIENT-ID, PRD-AZURE-CLIENT-SECRET, PRD-AZURE-TENANT-ID]
+    fabricRoles: null   # [A_VERIFIER] Quoi : rôles Fabric du SPN (Contributor sur les workspaces de l’environnement, User sur les connexions) | Pourquoi : moindre privilège | Qui : équipe produit | Où : API Fabric roleAssignments | Bloquant : non
+    terraformUsage: null   # [A_CONFIRMER_MICK] Quoi : identité de déploiement Terraform (même SPN ou identité dédiée) | Pourquoi : séparation des privilèges infra / items | Qui : Mick / sécurité | Où : standard de la refonte | Bloquant : oui

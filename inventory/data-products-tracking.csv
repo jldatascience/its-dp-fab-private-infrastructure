@@ -1,0 +1,2 @@
+﻿id;nom;categorie;ressources_dev;depot;workspaces_itg_ppr_prd;remarque;statut
+adp-opendata;OPENDATA;adp;Workspace DEV « FR - DP - DEV - FAB - ADP - OPENDATA - MANAGED » NON privatisé (PE et Private Link nommés dans le listing, absents du VNet);its-dp-fab-adp-opendata-managed;FR - DP - <ENV> - FAB - ADP - OPENDATA - MANAGED (config.yml du dépôt, 01/11/2026);Données open source : pas de privatisation (décision du 08/11/2026);NON PRIVATISÉ

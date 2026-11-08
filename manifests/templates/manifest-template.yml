@@ -1,0 +1,110 @@
+# ==============================================================================
+# MODÈLE de manifeste Data Platform Fabric — à copier pour un NOUVEAU data product
+# PROPOSITION DE L’ÉQUIPE PRODUIT — ce schéma N’EST PAS le schéma officiel de Mick.
+#
+# Règles :
+#  - une valeur inconnue reste à null avec un marqueur en commentaire :
+#    # [MARQUEUR] Quoi : … | Pourquoi : … | Qui : … | Où : … | Bloquant : oui|non
+#  - marqueurs : [A_RENSEIGNER] [A_VERIFIER] [A_CONFIRMER_MICK] [A_CONFIRMER_GLOBAL] [HORS_PERIMETRE_PRODUIT]
+#  - jamais de valeur secrète, jamais d’adresse IP, jamais de nom de VNet ou de subnet
+#    (ils appartiennent à la configuration réseau centrale de l’environnement)
+#  - un flux est déclaré UNIQUEMENT dans le manifeste du workspace qui porte la règle
+#  - deployable est recalculé par scripts/validate-manifests.py
+# ==============================================================================
+schemaVersion: dp-fabric-manifest/0.2-proposition   # [A_CONFIRMER_MICK] Quoi : schéma officiel du manifeste | Pourquoi : le point d’entrée Data Platform imposera son propre format | Qui : Mick | Où : dépôt de la refonte CI/CD as config | Bloquant : oui
+deployable: false
+
+dataProduct:
+  id: null   # [A_RENSEIGNER] Quoi : identifiant logique (adp-xxx, bdp-xxx, ucs-xxx) | Pourquoi : clé de référence entre manifestes | Qui : équipe produit | Où : convention de nommage | Bloquant : oui
+  name: null   # [A_RENSEIGNER] Quoi : nom métier du data product | Pourquoi : construit le nom du workspace | Qui : équipe produit | Où : DAG | Bloquant : oui
+  category: null   # [A_RENSEIGNER] Quoi : adp, bdp ou ucs | Pourquoi : détermine la dépendance au Framework | Qui : équipe produit | Où : DAG | Bloquant : oui
+  repository: null   # [A_RENSEIGNER] Quoi : dépôt Azure DevOps its-dp-fab-<cat>-<nom>-managed | Pourquoi : CD des items | Qui : équipe produit | Où : Azure DevOps | Bloquant : oui
+  owner: null   # [A_RENSEIGNER] Quoi : groupe Entra propriétaire | Pourquoi : approbation des MPE entrants | Qui : responsable du data product | Où : annuaire Entra KPMG France | Bloquant : oui
+  responsibleTeam: null   # [A_RENSEIGNER] Quoi : équipe responsable | Pourquoi : escalade | Qui : équipe produit | Où : organisation | Bloquant : non
+  dagReference: null   # [A_RENSEIGNER] Quoi : référence du DAG | Pourquoi : contrôle DAG / manifeste | Qui : architecte | Où : référentiel des DAG | Bloquant : oui
+  classification: null   # [A_RENSEIGNER] Quoi : classification des données | Pourquoi : labels MIP et valeurs standard | Qui : responsable du data product / sécurité | Où : politique de classification | Bloquant : oui
+  criticality: null   # [A_RENSEIGNER] Quoi : criticité BCx | Pourquoi : valeurs standard | Qui : responsable du data product | Où : DAG | Bloquant : oui
+
+environments:
+  DEV:
+    workspaceName: null   # [A_RENSEIGNER] Quoi : FR - DP - DEV - FAB - <ADP|BDP> - <Nom> - MANAGED | Pourquoi : convention confirmée doc 1 | Qui : équipe produit | Où : naming-conventions.md | Bloquant : oui
+    workspaceId: null   # [A_RENSEIGNER] Quoi : ID du workspace | Pourquoi : cible du Private Link | Qui : équipe produit | Où : API Fabric | Bloquant : oui
+    status: null   # [A_RENSEIGNER] Quoi : new, existing-not-privatized ou existing-privatized | Pourquoi : création ou import Terraform | Qui : équipe produit | Où : inventaire | Bloquant : oui
+    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement | Pourquoi : Private Link dans la souscription de la capacité | Qui : Global | Où : portail d’administration Fabric | Bloquant : oui
+    gitIntegration: true
+    existingResources: {}
+  ITG:
+    workspaceName: null   # [A_RENSEIGNER] Quoi : nom du workspace ITG | Pourquoi : cible | Qui : équipe produit | Où : naming-conventions.md | Bloquant : oui
+    workspaceId: null   # [A_RENSEIGNER] Quoi : ID du workspace | Pourquoi : cible du Private Link | Qui : équipe produit | Où : API Fabric | Bloquant : oui
+    status: null   # [A_RENSEIGNER] Quoi : état | Pourquoi : création ou import | Qui : équipe produit | Où : inventaire | Bloquant : oui
+    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité | Pourquoi : souscription du Private Link | Qui : Global | Où : portail | Bloquant : oui
+    gitIntegration: false
+    existingResources: {}
+  PPR:
+    workspaceName: null   # [A_RENSEIGNER] Quoi : nom du workspace PPR | Pourquoi : cible | Qui : équipe produit | Où : naming-conventions.md | Bloquant : oui
+    workspaceId: null   # [A_RENSEIGNER] Quoi : ID du workspace | Pourquoi : cible du Private Link | Qui : équipe produit | Où : API Fabric | Bloquant : oui
+    status: null   # [A_RENSEIGNER] Quoi : état | Pourquoi : création ou import | Qui : équipe produit | Où : inventaire | Bloquant : oui
+    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité | Pourquoi : souscription du Private Link | Qui : Global | Où : portail | Bloquant : oui
+    gitIntegration: false
+    existingResources: {}
+  PRD:
+    workspaceName: null   # [A_RENSEIGNER] Quoi : nom du workspace PRD | Pourquoi : cible | Qui : équipe produit | Où : naming-conventions.md | Bloquant : oui
+    workspaceId: null   # [A_RENSEIGNER] Quoi : ID du workspace | Pourquoi : cible du Private Link | Qui : équipe produit | Où : API Fabric | Bloquant : oui
+    status: null   # [A_RENSEIGNER] Quoi : état | Pourquoi : création ou import | Qui : équipe produit | Où : inventaire | Bloquant : oui
+    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité | Pourquoi : souscription du Private Link | Qui : Global | Où : portail | Bloquant : oui
+    gitIntegration: false
+    existingResources: {}
+
+privatisation:
+  networkProfile: private
+  inbound:
+    publicAccess: deny
+    workspacePrivateLink: true
+    privateEndpoint: true
+  outbound:
+    accessProtection: true
+  dns:
+    zone: privatelink.fabric.microsoft.com
+    zoneHosting: null   # [HORS_PERIMETRE_PRODUIT] Quoi : zone DNS privée | Pourquoi : hébergée dans le hub | Qui : Global | Où : hub | Bloquant : non
+  sharedNetworkRef: null   # [HORS_PERIMETRE_PRODUIT] Quoi : configuration réseau de l’environnement | Pourquoi : VNet et subnet mutualisés | Qui : Mick | Où : configuration centrale | Bloquant : oui
+
+flows: []   # un élément par flux sortant porté par ce workspace (voir documentation/network-patterns.md)
+# Exemple de structure (non actif) :
+# - id: <dp>-p2-framework
+#   pattern: P2
+#   direction: sortant
+#   source: <dp>
+#   target: framework-items
+#   mechanism: "Data Connection Rule « Fabric Data Pipelines »"
+#   ruleCarriedBy: <dp>
+#   protocol: null
+#   port: null
+#   businessJustification: "…"
+#   dagReference: null
+#   approvalOwner: "…"
+#   validationStatus: {DEV: "à faire", ITG: "à faire", PPR: "à faire", PRD: "à faire"}
+
+dependencies:
+  deployment:
+    framework: required   # none pour un UCS
+  frameworkItemsConsumed: null   # [A_RENSEIGNER] Quoi : items Framework appelés | Pourquoi : porte Framework | Qui : équipe produit | Où : parameter.yml | Bloquant : non
+  data: []
+  externalConnections: []
+
+security:
+  identityRef: sp-fabric-<ENV>
+  federatedIdentity: null   # [A_CONFIRMER_MICK] Quoi : identité fédérée OIDC / WIF | Pourquoi : suppression des secrets | Qui : Mick / Ops | Où : standard de la refonte | Bloquant : non
+  keyVaultRefs: inventory/keyvault-references.yml#sp-credentials
+  entraGroups:
+    admins: null   # [A_RENSEIGNER] Quoi : groupe administrateur | Pourquoi : rôles | Qui : responsable du data product | Où : Entra | Bloquant : non
+    contributors: null   # [A_RENSEIGNER] Quoi : groupe contributeur | Pourquoi : rôles | Qui : responsable du data product | Où : Entra | Bloquant : non
+    viewers: null   # [A_RENSEIGNER] Quoi : groupe lecteur | Pourquoi : rôles | Qui : responsable du data product | Où : Entra | Bloquant : non
+
+extensions: {}
+
+traceability:
+  sources: []
+  validatedOn: null   # [A_RENSEIGNER] Quoi : date de validation | Pourquoi : traçabilité | Qui : valideur | Où : revue | Bloquant : non
+  validatedBy: null   # [A_RENSEIGNER] Quoi : valideur | Pourquoi : traçabilité | Qui : équipe produit | Où : revue | Bloquant : non
+  completeness: computed
+  globalTickets: []

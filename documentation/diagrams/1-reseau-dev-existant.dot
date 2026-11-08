@@ -1,0 +1,16 @@
+digraph G { rankdir=LR; graph [fontname="Arial", fontsize=12, labelloc=t, label="1 — Réseau DEV tel qu’il existe (exports du 08/11/2026)", pad=0.3, nodesep=0.25, ranksep=0.6];
+node [fontname="Arial", fontsize=10, shape=box, style="rounded,filled", fillcolor=white]; edge [fontname="Arial", fontsize=9];
+subgraph cluster_g { label="Global — souscription 1fe4e122-…"; style="filled,dashed"; fillcolor="#F1F1F1";
+  hub [label="VNet hub fralzvnet0001\n10.113.192.0/22\nRG frinfalzconnectivityhub0001"]; dns [label="DNS 10.113.192.100\nzone privatelink.fabric.microsoft.com (non exportée)"]; }
+subgraph cluster_s { label="FR-AZR-DP-DEV — RG frappdevdp0001 (francecentral)"; style="filled"; fillcolor="#E8F0FB";
+  vnet [label="VNet fralzvnetdev1055 (westeurope)\n172.23.20.0/24\nroute table fr_rt_fralzvnetdev1055"];
+  sn [label="subnet snet-kpmg-backend\n172.23.20.0/24 — sans NSG ni NAT\n16 Private Endpoints — 85 IP"];
+  kv [label="Key Vault frfrkvdevdp0001\nPE FRFRAPEKVDEVDP0001 (1 IP)"]; }
+subgraph cluster_f { label="Fabric — capacité frfrfcdevdp0001 (F16)"; style="filled"; fillcolor="#E6F4EA";
+  fw [label="Framework (5 IP)"]; adp [label="ADP MDS (6) · Référentiel (5)\nIBS (6) · GDS (5)"];
+  bdp [label="BDP Centre de Profit · Collaborateur · Compte\nEngagement · Facture Client · Performance (6 IP chacun)"];
+  ucs [label="UCS Reporting Fees & WIP (5)"]; per [label="DEV Daniels (5) · Houssem (5) · Yassine (6)"]; }
+vnet -> hub [label="peering Connected", dir=both]; vnet -> dns [style=dotted, label="résolution"]; vnet -> sn;
+sn -> kv; sn -> fw [label="PE + Private Link"]; sn -> adp; sn -> bdp; sn -> ucs; sn -> per;
+fw -> adp [color="#00338D", label="P1 P3 P4"]; adp -> fw [color="#00338D", label="P2"]; fw -> bdp [color="#00338D", label="P4"];
+bdp -> adp [color="#B5651D", label="P7 proposé (MPE)"]; ucs -> bdp [color="#B5651D", label="P7"]; ucs -> adp [color="#B5651D"]; }

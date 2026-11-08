@@ -1,0 +1,28 @@
+# Valeurs réseau par environnement — INFORMATION pour la configuration centrale de Mick
+# [HORS_PERIMETRE_PRODUIT] Ce fichier n’est PAS une configuration Terraform : il transmet les faits DEV et signale les manques.
+environments:
+  DEV:
+    subscription: {name: FR-AZR-DP-DEV, id: 0c53c37e-2ed2-4d58-b147-8f80763294ce}   # CONFIRMÉ
+    resourceGroup: frappdevdp0001   # CONFIRMÉ
+    vnet: {name: fralzvnetdev1055, region: westeurope, addressSpace: 172.23.20.0/24, dns: [10.113.192.100]}   # CONFIRMÉ
+    subnet: {name: snet-kpmg-backend, prefix: 172.23.20.0/24, purpose: PrivateEndpoints, nsg: null, natGateway: null, routeTable: fr_rt_fralzvnetdev1055}   # CONFIRMÉ
+    hub: {vnet: fralzvnet0001, resourceGroup: frinfalzconnectivityhub0001, subscriptionId: 1fe4e122-3c20-4707-88ed-3ce3fa2e259f, addressSpace: 10.113.192.0/22}   # CONFIRMÉ (peering)
+    ipUsage: {used: 85, usable: 251, workspacesPrivatized: 15}   # CONFIRMÉ (VNet, périmètre)
+  ITG:
+    subscription: null   # [A_CONFIRMER_GLOBAL] Quoi : souscription ITG | Pourquoi : Private Link et capacité dans la même souscription | Qui : Global | Où : portail Azure | Bloquant : oui
+    resourceGroup: frappitgdp0001   # nomenclature DEV transposée (décision du 08/11/2026)
+    vnet: {name: fralzvnetitg1055, region: westeurope, addressSpace: null, dns: null}   # nom : nomenclature DEV ; [A_CONFIRMER_GLOBAL] Quoi : plage IP et DNS ITG (numéro 1055 du VNet repris de DEV) | Pourquoi : 18 workspaces × 5 à 6 IP ≈ 108 IP minimum, hors croissance | Qui : Global / équipe réseau | Où : plan d’adressage | Bloquant : oui
+    subnet: {name: snet-kpmg-backend, prefix: null, nsg: null, natGateway: null, routeTable: fr_rt_fralzvnetitg1055}   # nomenclature DEV transposée
+    hub: null   # [A_CONFIRMER_GLOBAL] Quoi : peering vers le hub | Pourquoi : résolution DNS et routage | Qui : Global | Où : équipe réseau | Bloquant : oui
+  PPR:
+    subscription: null   # [A_CONFIRMER_GLOBAL] Quoi : souscription PPR | Pourquoi : Private Link et capacité dans la même souscription | Qui : Global | Où : portail Azure | Bloquant : oui
+    resourceGroup: frapppprdp0001   # nomenclature DEV transposée (décision du 08/11/2026)
+    vnet: {name: fralzvnetppr1055, region: westeurope, addressSpace: null, dns: null}   # nom : nomenclature DEV ; [A_CONFIRMER_GLOBAL] Quoi : plage IP et DNS PPR (numéro 1055 du VNet repris de DEV) | Pourquoi : 18 workspaces × 5 à 6 IP ≈ 108 IP minimum, hors croissance | Qui : Global / équipe réseau | Où : plan d’adressage | Bloquant : oui
+    subnet: {name: snet-kpmg-backend, prefix: null, nsg: null, natGateway: null, routeTable: fr_rt_fralzvnetppr1055}   # nomenclature DEV transposée
+    hub: null   # [A_CONFIRMER_GLOBAL] Quoi : peering vers le hub | Pourquoi : résolution DNS et routage | Qui : Global | Où : équipe réseau | Bloquant : oui
+  PRD:
+    subscription: null   # [A_CONFIRMER_GLOBAL] Quoi : souscription PRD | Pourquoi : Private Link et capacité dans la même souscription | Qui : Global | Où : portail Azure | Bloquant : oui
+    resourceGroup: frappprddp0001   # nomenclature DEV transposée (décision du 08/11/2026)
+    vnet: {name: fralzvnetprd1055, region: westeurope, addressSpace: null, dns: null}   # nom : nomenclature DEV ; [A_CONFIRMER_GLOBAL] Quoi : plage IP et DNS PRD (numéro 1055 du VNet repris de DEV) | Pourquoi : 18 workspaces × 5 à 6 IP ≈ 108 IP minimum, hors croissance | Qui : Global / équipe réseau | Où : plan d’adressage | Bloquant : oui
+    subnet: {name: snet-kpmg-backend, prefix: null, nsg: null, natGateway: null, routeTable: fr_rt_fralzvnetprd1055}   # nomenclature DEV transposée
+    hub: null   # [A_CONFIRMER_GLOBAL] Quoi : peering vers le hub | Pourquoi : résolution DNS et routage | Qui : Global | Où : équipe réseau | Bloquant : oui

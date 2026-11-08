@@ -1,0 +1,134 @@
+# Références Key Vault — noms et métadonnées uniquement, JAMAIS de valeur
+# Source : Key vault frfrkvdevdp0001 (export JSON + capture des secrets)
+keyVaults:
+  kv-dataplatform:
+    name: frfrkvdevdp0001   # CONFIRMÉ — coffre unique pour DEV, ITG, PPR, PRD (décision du 22/10/2026)
+    uri: https://frfrkvdevdp0001.vault.azure.net/
+    resourceGroup: frappdevdp0001
+    subscription: FR-AZR-DP-DEV
+    rbac: true
+    publicNetworkAccess: null   # [A_VERIFIER] Quoi : valeur publicNetworkAccess | Pourquoi : absente de l’export (networkAcls.defaultAction = Deny) | Qui : équipe produit | Où : az keyvault show --query properties.publicNetworkAccess | Bloquant : non
+    accessModel: rbac   # CONFIRMÉ : enableRbacAuthorization true, accessPolicies vide
+    network: {defaultAction: Deny, bypass: AzureServices, ipRules: [], virtualNetworkRules: [], privateEndpoint: FRFRAPEKVDEVDP0001}   # CONFIRMÉ
+    perEnvironmentVaults: null   # aucun coffre ITG, PPR ou PRD n’est cité : ne pas en inventer
+sp-credentials:
+  - secretName: DEV-AZURE-CLIENT-ID
+    keyVault: kv-dataplatform
+    environment: DEV
+    nature: "identifiant non secret"
+    consumer: "pipeline CD des items (DEV)"   # DEV non déployé par la CD : usage à confirmer
+    authorizedIdentity: null   # [A_CONFIRMER_MICK] Quoi : service connection ARM DEV autorisée | Pourquoi : rôle Key Vault Secrets User limité aux secrets de l’environnement | Qui : Ops / Mick | Où : Azure DevOps > Service connections | Bloquant : non
+    rbacRole: Key Vault Secrets User
+    expiration: "1/27/2029"   # CONFIRMÉ (capture)
+    status: Enabled   # CONFIRMÉ (capture du portail)
+    validationStatus: à confirmer
+  - secretName: DEV-AZURE-CLIENT-SECRET
+    keyVault: kv-dataplatform
+    environment: DEV
+    nature: "SECRET"
+    consumer: "pipeline CD des items (DEV)"   # DEV non déployé par la CD : usage à confirmer
+    authorizedIdentity: null   # [A_CONFIRMER_MICK] Quoi : service connection ARM DEV autorisée | Pourquoi : rôle Key Vault Secrets User limité aux secrets de l’environnement | Qui : Ops / Mick | Où : Azure DevOps > Service connections | Bloquant : non
+    rbacRole: Key Vault Secrets User
+    expiration: "1/27/2029"   # CONFIRMÉ (capture)
+    status: Enabled   # CONFIRMÉ (capture du portail)
+    validationStatus: à confirmer
+  - secretName: DEV-AZURE-TENANT-ID
+    keyVault: kv-dataplatform
+    environment: DEV
+    nature: "identifiant non secret"
+    consumer: "pipeline CD des items (DEV)"   # DEV non déployé par la CD : usage à confirmer
+    authorizedIdentity: null   # [A_CONFIRMER_MICK] Quoi : service connection ARM DEV autorisée | Pourquoi : rôle Key Vault Secrets User limité aux secrets de l’environnement | Qui : Ops / Mick | Où : Azure DevOps > Service connections | Bloquant : non
+    rbacRole: Key Vault Secrets User
+    expiration: "1/27/2029"   # CONFIRMÉ (capture)
+    status: Enabled   # CONFIRMÉ (capture du portail)
+    validationStatus: à confirmer
+  - secretName: ITG-AZURE-CLIENT-ID
+    keyVault: kv-dataplatform
+    environment: ITG
+    nature: "identifiant non secret"
+    consumer: "pipeline CD des items (ITG)"
+    authorizedIdentity: null   # [A_CONFIRMER_MICK] Quoi : service connection ARM ITG autorisée | Pourquoi : rôle Key Vault Secrets User limité aux secrets de l’environnement | Qui : Ops / Mick | Où : Azure DevOps > Service connections | Bloquant : oui
+    rbacRole: Key Vault Secrets User
+    expiration: null   # aucune date affichée
+    status: Enabled   # CONFIRMÉ (capture du portail)
+    validationStatus: à confirmer
+  - secretName: ITG-AZURE-CLIENT-SECRET
+    keyVault: kv-dataplatform
+    environment: ITG
+    nature: "SECRET"
+    consumer: "pipeline CD des items (ITG)"
+    authorizedIdentity: null   # [A_CONFIRMER_MICK] Quoi : service connection ARM ITG autorisée | Pourquoi : rôle Key Vault Secrets User limité aux secrets de l’environnement | Qui : Ops / Mick | Où : Azure DevOps > Service connections | Bloquant : oui
+    rbacRole: Key Vault Secrets User
+    expiration: "1/17/2027"   # CONFIRMÉ (capture)
+    status: Enabled   # CONFIRMÉ (capture du portail)
+    validationStatus: à renouveler avant expiration
+  - secretName: ITG-AZURE-TENANT-ID
+    keyVault: kv-dataplatform
+    environment: ITG
+    nature: "identifiant non secret"
+    consumer: "pipeline CD des items (ITG)"
+    authorizedIdentity: null   # [A_CONFIRMER_MICK] Quoi : service connection ARM ITG autorisée | Pourquoi : rôle Key Vault Secrets User limité aux secrets de l’environnement | Qui : Ops / Mick | Où : Azure DevOps > Service connections | Bloquant : oui
+    rbacRole: Key Vault Secrets User
+    expiration: null   # aucune date affichée
+    status: Enabled   # CONFIRMÉ (capture du portail)
+    validationStatus: à confirmer
+  - secretName: PPR-AZURE-CLIENT-ID
+    keyVault: kv-dataplatform
+    environment: PPR
+    nature: "identifiant non secret"
+    consumer: "pipeline CD des items (PPR)"
+    authorizedIdentity: null   # [A_CONFIRMER_MICK] Quoi : service connection ARM PPR autorisée | Pourquoi : rôle Key Vault Secrets User limité aux secrets de l’environnement | Qui : Ops / Mick | Où : Azure DevOps > Service connections | Bloquant : oui
+    rbacRole: Key Vault Secrets User
+    expiration: null   # aucune date affichée
+    status: Enabled   # CONFIRMÉ (capture du portail)
+    validationStatus: à confirmer
+  - secretName: PPR-AZURE-CLIENT-SECRET
+    keyVault: kv-dataplatform
+    environment: PPR
+    nature: "SECRET"
+    consumer: "pipeline CD des items (PPR)"
+    authorizedIdentity: null   # [A_CONFIRMER_MICK] Quoi : service connection ARM PPR autorisée | Pourquoi : rôle Key Vault Secrets User limité aux secrets de l’environnement | Qui : Ops / Mick | Où : Azure DevOps > Service connections | Bloquant : oui
+    rbacRole: Key Vault Secrets User
+    expiration: "1/17/2027"   # CONFIRMÉ (capture)
+    status: Enabled   # CONFIRMÉ (capture du portail)
+    validationStatus: à renouveler avant expiration
+  - secretName: PPR-AZURE-TENANT-ID
+    keyVault: kv-dataplatform
+    environment: PPR
+    nature: "identifiant non secret"
+    consumer: "pipeline CD des items (PPR)"
+    authorizedIdentity: null   # [A_CONFIRMER_MICK] Quoi : service connection ARM PPR autorisée | Pourquoi : rôle Key Vault Secrets User limité aux secrets de l’environnement | Qui : Ops / Mick | Où : Azure DevOps > Service connections | Bloquant : oui
+    rbacRole: Key Vault Secrets User
+    expiration: null   # aucune date affichée
+    status: Enabled   # CONFIRMÉ (capture du portail)
+    validationStatus: à confirmer
+  - secretName: PRD-AZURE-CLIENT-ID
+    keyVault: kv-dataplatform
+    environment: PRD
+    nature: "identifiant non secret"
+    consumer: "pipeline CD des items (PRD)"
+    authorizedIdentity: null   # [A_CONFIRMER_MICK] Quoi : service connection ARM PRD autorisée | Pourquoi : rôle Key Vault Secrets User limité aux secrets de l’environnement | Qui : Ops / Mick | Où : Azure DevOps > Service connections | Bloquant : oui
+    rbacRole: Key Vault Secrets User
+    expiration: null   # aucune date affichée
+    status: Enabled   # CONFIRMÉ (capture du portail)
+    validationStatus: à confirmer
+  - secretName: PRD-AZURE-CLIENT-SECRET
+    keyVault: kv-dataplatform
+    environment: PRD
+    nature: "SECRET"
+    consumer: "pipeline CD des items (PRD)"
+    authorizedIdentity: null   # [A_CONFIRMER_MICK] Quoi : service connection ARM PRD autorisée | Pourquoi : rôle Key Vault Secrets User limité aux secrets de l’environnement | Qui : Ops / Mick | Où : Azure DevOps > Service connections | Bloquant : oui
+    rbacRole: Key Vault Secrets User
+    expiration: "1/17/2027"   # CONFIRMÉ (capture)
+    status: Enabled   # CONFIRMÉ (capture du portail)
+    validationStatus: à renouveler avant expiration
+  - secretName: PRD-AZURE-TENANT-ID
+    keyVault: kv-dataplatform
+    environment: PRD
+    nature: "identifiant non secret"
+    consumer: "pipeline CD des items (PRD)"
+    authorizedIdentity: null   # [A_CONFIRMER_MICK] Quoi : service connection ARM PRD autorisée | Pourquoi : rôle Key Vault Secrets User limité aux secrets de l’environnement | Qui : Ops / Mick | Où : Azure DevOps > Service connections | Bloquant : oui
+    rbacRole: Key Vault Secrets User
+    expiration: null   # aucune date affichée
+    status: Enabled   # CONFIRMÉ (capture du portail)
+    validationStatus: à confirmer

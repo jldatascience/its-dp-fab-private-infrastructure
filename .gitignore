@@ -1,0 +1,11 @@
+# Sorties brutes des scripts d'inventaire (jamais versionnées : seuls les extraits assainis vont dans inventory/)
+_inventaire/
+inventory-dev-*/
+inventory-fabric-*/
+# Python / éditeurs / systèmes
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db
+~$*.xlsx

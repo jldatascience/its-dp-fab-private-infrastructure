@@ -1,0 +1,76 @@
+﻿n;source;cible;source_id;cible_id;mpe;statut
+1;FR - DP - DEV - FAB - DEV - HOUSSEM - MANAGED;FR - DP - DEV - FAB - Framework – MANAGED;dev-houssem;framework-items;FRFRAPEFWDEVDPFRAMEWORKMANAGED0001-2;Créé
+3;FR - DP - DEV - FAB - DEV - HOUSSEM - MANAGED;FR - DP - DEV - FAB - ADP - IBS - MANAGED;dev-houssem;adp-ibs;FRFRAPEFWDEVDPADPIBSMANAGED0001-2;Créé
+4;FR - DP - DEV - FAB - DEV - HOUSSEM - MANAGED;FR - DP - DEV - FAB - ADP - MDS - MANAGED;dev-houssem;adp-mds;FRFRAPEFWDEVDPADPMDSMANAGED0001-2;Créé
+5;FR - DP - DEV - FAB - DEV - HOUSSEM - MANAGED;FR - DP - DEV - FAB - BDP - Centre de Profit - MANAGED;dev-houssem;bdp-centre-profit;FRFRAPEFWDEVDPBDPCENTREDEPROFITMANAGED0001-2;Créé
+6;FR - DP - DEV - FAB - DEV - HOUSSEM - MANAGED;FR - DP - DEV - FAB - BDP - Collaborateur - MANAGED;dev-houssem;bdp-collaborateur;FRFRAPEFWDEVDPBDPCOLLABORATEURMANAGED0001-2;Créé
+7;FR - DP - DEV - FAB - DEV - HOUSSEM - MANAGED;FR - DP - DEV - FAB - BDP - Engagement - MANAGED;dev-houssem;bdp-engagement;FRFRAPEFWDEVDPBDPENGAGEMENTMANAGED0001-2;Créé
+8;FR - DP - DEV - FAB - DEV - HOUSSEM - MANAGED;FR - DP - DEV - FAB - BDP - Facture Client - MANAGED;dev-houssem;bdp-facture-client;FRFRAPEFWDEVDPBDPFACTURECLIENTMANAGED0001-2;Créé
+9;FR - DP - DEV - FAB - DEV - HOUSSEM - MANAGED;FR - DP - DEV - FAB - BDP - Performance Engagement - MANAGED;dev-houssem;bdp-performance-engagement;FRFRAPEFWDEVDPBDPPERFORMANCEFINANCIEREMANAGED0001-2;Créé
+10;FR - DP - DEV - FAB - DEV - HOUSSEM - MANAGED;FR - DP - DEV - FAB - BDP - Compte - MANAGED;dev-houssem;bdp-compte;FRFRAPEFWDEVDPBDPCOMPTEMANAGED0001-2;Créé
+11;FR - DP - DEV - FAB - DEV - DANIELS - MANAGED;FR - DP - DEV - FAB - Framework – MANAGED;dev-daniels;framework-items;FRFRAPEFWDEVDPFRAMEWORKMANAGED0001-3;Créé
+13;FR - DP - DEV - FAB - DEV - DANIELS - MANAGED;FR - DP - DEV - FAB - ADP - IBS - MANAGED;dev-daniels;adp-ibs;FRFRAPEFWDEVDPADPIBSMANAGED0001-3;Créé
+14;FR - DP - DEV - FAB - DEV - DANIELS - MANAGED;FR - DP - DEV - FAB - ADP - MDS - MANAGED;dev-daniels;adp-mds;FRFRAPEFWDEVDPADPMDSMANAGED0001-3;Créé
+15;FR - DP - DEV - FAB - DEV - DANIELS - MANAGED;FR - DP - DEV - FAB - BDP - Centre de Profit - MANAGED;dev-daniels;bdp-centre-profit;FRFRAPEFWDEVDPBDPCENTREDEPROFITMANAGED0001-3;Créé
+16;FR - DP - DEV - FAB - DEV - DANIELS - MANAGED;FR - DP - DEV - FAB - BDP - Collaborateur - MANAGED;dev-daniels;bdp-collaborateur;FRFRAPEFWDEVDPBDPCOLLABORATEURMANAGED0001-3;Créé
+17;FR - DP - DEV - FAB - DEV - DANIELS - MANAGED;FR - DP - DEV - FAB - BDP - Engagement - MANAGED;dev-daniels;bdp-engagement;FRFRAPEFWDEVDPBDPENGAGEMENTMANAGED0001-3;Créé
+18;FR - DP - DEV - FAB - DEV - DANIELS - MANAGED;FR - DP - DEV - FAB - BDP - Facture Client - MANAGED;dev-daniels;bdp-facture-client;FRFRAPEFWDEVDPBDPFACTURECLIENTMANAGED0001-3;Créé
+19;FR - DP - DEV - FAB - DEV - DANIELS - MANAGED;FR - DP - DEV - FAB - BDP - Performance Engagement - MANAGED;dev-daniels;bdp-performance-engagement;FRFRAPEFWDEVDPBDPPERFORMANCEFINANCIEREMANAGED0001-3;Créé
+20;FR - DP - DEV - FAB - DEV - DANIELS - MANAGED;FR - DP - DEV - FAB - BDP - Compte - MANAGED;dev-daniels;bdp-compte;FRFRAPEFWDEVDPBDPCOMPTEMANAGED0001-3;Créé
+21;FR - DP - DEV - FAB - DEV - YASSINE - MANAGED;FR - DP - DEV - FAB - Framework – MANAGED;dev-yassine;framework-items;FRFRAPEFWDEVDPFRAMEWORKMANAGED0001-4;Créé
+23;FR - DP - DEV - FAB - DEV - YASSINE - MANAGED;FR - DP - DEV - FAB - ADP - IBS - MANAGED;dev-yassine;adp-ibs;FRFRAPEFWDEVDPADPIBSMANAGED0001-4;Créé
+24;FR - DP - DEV - FAB - DEV - YASSINE - MANAGED;FR - DP - DEV - FAB - ADP - MDS - MANAGED;dev-yassine;adp-mds;FRFRAPEFWDEVDPADPMDSMANAGED0001-4;Créé
+25;FR - DP - DEV - FAB - DEV - YASSINE - MANAGED;FR - DP - DEV - FAB - BDP - Centre de Profit - MANAGED;dev-yassine;bdp-centre-profit;FRFRAPEFWDEVDPBDPCENTREDEPROFITMANAGED0001-4;Créé
+26;FR - DP - DEV - FAB - DEV - YASSINE - MANAGED;FR - DP - DEV - FAB - BDP - Collaborateur - MANAGED;dev-yassine;bdp-collaborateur;FRFRAPEFWDEVDPBDPCOLLABORATEURMANAGED0001-4;Créé
+27;FR - DP - DEV - FAB - DEV - YASSINE - MANAGED;FR - DP - DEV - FAB - BDP - Engagement - MANAGED;dev-yassine;bdp-engagement;FRFRAPEFWDEVDPBDPENGAGEMENTMANAGED0001-4;Créé
+28;FR - DP - DEV - FAB - DEV - YASSINE - MANAGED;FR - DP - DEV - FAB - BDP - Facture Client - MANAGED;dev-yassine;bdp-facture-client;FRFRAPEFWDEVDPBDPFACTURECLIENTMANAGED0001-4;Créé
+29;FR - DP - DEV - FAB - DEV - YASSINE - MANAGED;FR - DP - DEV - FAB - BDP - Performance Engagement - MANAGED;dev-yassine;bdp-performance-engagement;FRFRAPEFWDEVDPBDPPERFORMANCEFINANCIEREMANAGED0001-4;Créé
+30;FR - DP - DEV - FAB - DEV - YASSINE - MANAGED;FR - DP - DEV - FAB - BDP - Compte - MANAGED;dev-yassine;bdp-compte;FRFRAPEFWDEVDPBDPCOMPTEMANAGED0001-4;Créé
+31;FR - DP - DEV - FAB - BDP - Engagement - MANAGED;FR - DP - DEV - FAB - ADP - MDS - MANAGED;bdp-engagement;adp-mds;FRFRAPEFWDEVDPADPMDSMANAGED0001-5;Créé
+33;FR - DP - DEV - FAB - BDP - Engagement - MANAGED;FR - DP - DEV - FAB - BDP - Collaborateur - MANAGED;bdp-engagement;bdp-collaborateur;FRFRAPEFWDEVDPBDPCOLLABORATEURMANAGED0001-5;Créé
+34;FR - DP - DEV - FAB - BDP - Engagement - MANAGED;FR - DP - DEV - FAB - BDP - Centre de Profit - MANAGED;bdp-engagement;bdp-centre-profit;FRFRAPEFWDEVDPBDPCENTREDEPROFITMANAGED0001-5;Créé
+35;FR - DP - DEV - FAB - BDP - Collaborateur - MANAGED;FR - DP - DEV - FAB - ADP - MDS - MANAGED;bdp-collaborateur;adp-mds;FRFRAPEFWDEVDPADPMDSMANAGED0001-6;Créé
+37;FR - DP - DEV - FAB - BDP - Collaborateur - MANAGED;FR - DP - DEV - FAB - BDP - Centre de Profit - MANAGED;bdp-collaborateur;bdp-centre-profit;FRFRAPEFWDEVDPBDPCENTREDEPROFITMANAGED0001-6;Créé
+38;FR - DP - DEV - FAB - BDP - Compte - MANAGED;FR - DP - DEV - FAB - ADP - MDS - MANAGED;bdp-compte;adp-mds;FRFRAPEFWDEVDPADPMDSMANAGED0001-7;Créé
+40;FR - DP - DEV - FAB - BDP - Centre de Profit - MANAGED;FR - DP - DEV - FAB - ADP - MDS - MANAGED;bdp-centre-profit;adp-mds;FRFRAPEFWDEVDPADPMDSMANAGED0001-8;Créé
+41;FR - DP - DEV - FAB - BDP - Facture Client - MANAGED;FR - DP - DEV - FAB - ADP - MDS - MANAGED;bdp-facture-client;adp-mds;FRFRAPEFWDEVDPADPMDSMANAGED0001-9;Créé
+43;FR - DP - DEV - FAB - BDP - Facture Client - MANAGED;FR - DP - DEV - FAB - ADP - IBS - MANAGED;bdp-facture-client;adp-ibs;FRFRAPEFWDEVDPADPIBSMANAGED0001-5;Créé
+44;FR - DP - DEV - FAB - BDP - Facture Client - MANAGED;FR - DP - DEV - FAB - BDP - Engagement - MANAGED;bdp-facture-client;bdp-engagement;FRFRAPEFWDEVDPBDPENGAGEMENTMANAGED0001-5;Créé
+45;FR - DP - DEV - FAB - BDP - Facture Client - MANAGED;FR - DP - DEV - FAB - BDP - Collaborateur - MANAGED;bdp-facture-client;bdp-collaborateur;FRFRAPEFWDEVDPBDPCOLLABORATEURMANAGED0001-6;Créé
+46;FR - DP - DEV - FAB - BDP - Facture Client - MANAGED;FR - DP - DEV - FAB - BDP - Compte - MANAGED;bdp-facture-client;bdp-compte;FRFRAPEFWDEVDPBDPCOMPTEMANAGED0001-5;Créé
+47;FR - DP - DEV - FAB - BDP - Facture Client - MANAGED;FR - DP - DEV - FAB - BDP - Centre de Profit - MANAGED;bdp-facture-client;bdp-centre-profit;FRFRAPEFWDEVDPBDPCENTREDEPROFITMANAGED0001-7;Créé
+48;FR - DP - DEV - FAB - BDP - Performance Engagement - MANAGED;FR - DP - DEV - FAB - ADP - MDS - MANAGED;bdp-performance-engagement;adp-mds;FRFRAPEFWDEVDPADPMDSMANAGED0001-10;Créé
+50;FR - DP - DEV - FAB - BDP - Performance Engagement - MANAGED;FR - DP - DEV - FAB - ADP - IBS - MANAGED;bdp-performance-engagement;adp-ibs;FRFRAPEFWDEVDPADPIBSMANAGED0001-6;Créé
+51;FR - DP - DEV - FAB - BDP - Performance Engagement - MANAGED;FR - DP - DEV - FAB - BDP - Engagement - MANAGED;bdp-performance-engagement;bdp-engagement;FRFRAPEFWDEVDPBDPENGAGEMENTMANAGED0001-6;Créé
+52;FR - DP - DEV - FAB - BDP - Performance Engagement - MANAGED;FR - DP - DEV - FAB - BDP - Collaborateur - MANAGED;bdp-performance-engagement;bdp-collaborateur;FRFRAPEFWDEVDPBDPCOLLABORATEURMANAGED0001-7;Créé
+53;FR - DP - DEV - FAB - BDP - Performance Engagement - MANAGED;FR - DP - DEV - FAB - BDP - Compte - MANAGED;bdp-performance-engagement;bdp-compte;FRFRAPEFWDEVDPBDPCOMPTEMANAGED0001-6;Créé
+54;FR - DP - DEV - FAB - BDP - Performance Engagement - MANAGED;FR - DP - DEV - FAB - BDP - Centre de Profit - MANAGED;bdp-performance-engagement;bdp-centre-profit;FRFRAPEFWDEVDPBDPCENTREDEPROFITMANAGED0001-8;Créé
+55;FR - DP - DEV - FAB - UCS - Reporting Fees & WIP - Managed;FR - DP - DEV - FAB - ADP - MDS - MANAGED;ucs-reporting-fees-wip;adp-mds;FRFRAPEFWDEVDPADPMDSMANAGED0001-11;Créé
+57;FR - DP - DEV - FAB - UCS - Reporting Fees & WIP - Managed;FR - DP - DEV - FAB - ADP - IBS - MANAGED;ucs-reporting-fees-wip;adp-ibs;FRFRAPEFWDEVDPADPIBSMANAGED0001-7;Créé
+58;FR - DP - DEV - FAB - UCS - Reporting Fees & WIP - Managed;FR - DP - DEV - FAB - BDP - Engagement - MANAGED;ucs-reporting-fees-wip;bdp-engagement;FRFRAPEFWDEVDPBDPENGAGEMENTMANAGED0001-7;Créé
+59;FR - DP - DEV - FAB - UCS - Reporting Fees & WIP - Managed;FR - DP - DEV - FAB - BDP - Collaborateur - MANAGED;ucs-reporting-fees-wip;bdp-collaborateur;FRFRAPEFWDEVDPBDPCOLLABORATEURMANAGED0001-8;Créé
+60;FR - DP - DEV - FAB - UCS - Reporting Fees & WIP - Managed;FR - DP - DEV - FAB - BDP - Compte - MANAGED;ucs-reporting-fees-wip;bdp-compte;FRFRAPEFWDEVDPBDPCOMPTEMANAGED0001-7;Créé
+61;FR - DP - DEV - FAB - UCS - Reporting Fees & WIP - Managed;FR - DP - DEV - FAB - BDP - Centre de Profit - MANAGED;ucs-reporting-fees-wip;bdp-centre-profit;FRFRAPEFWDEVDPBDPCENTREDEPROFITMANAGED0001-9;Créé
+62;FR - DP - DEV - FAB - UCS - Reporting Fees & WIP - Managed;FR - DP - DEV - FAB - BDP - Facture Client - MANAGED;ucs-reporting-fees-wip;bdp-facture-client;FRFRAPEFWDEVDPBDPFACTURECLIENTMANAGED0001-5;Créé
+63;FR - DP - DEV - FAB - UCS - Reporting Fees & WIP - Managed;FR - DP - DEV - FAB - BDP - Performance Engagement - MANAGED;ucs-reporting-fees-wip;bdp-performance-engagement;FRFRAPEFWDEVDPBDPPERFORMANCEFINANCIEREMANAGED0001-5;Créé
+64;FR - DP - DEV - FAB - Framework – MANAGED;FR - DP - DEV - FAB - ADP - MDS - MANAGED;framework-items;adp-mds;FRFRAPEFWDEVDPADPMDSMANAGED0001-12;Créé
+66;FR - DP - DEV - FAB - Framework – MANAGED;FR - DP - DEV - FAB - ADP - IBS - MANAGED;framework-items;adp-ibs;FRFRAPEFWDEVDPADPIBSMANAGED0001-8;Créé
+67;FR - DP - DEV - FAB - Framework – MANAGED;FR - DP - DEV - FAB - BDP - Engagement - MANAGED;framework-items;bdp-engagement;FRFRAPEFWDEVDPBDPENGAGEMENTMANAGED0001-8;Créé
+68;FR - DP - DEV - FAB - Framework – MANAGED;FR - DP - DEV - FAB - BDP - Collaborateur - MANAGED;framework-items;bdp-collaborateur;FRFRAPEFWDEVDPBDPCOLLABORATEURMANAGED0001-9;Créé
+69;FR - DP - DEV - FAB - Framework – MANAGED;FR - DP - DEV - FAB - BDP - Compte - MANAGED;framework-items;bdp-compte;FRFRAPEFWDEVDPBDPCOMPTEMANAGED0001-8;Créé
+70;FR - DP - DEV - FAB - Framework – MANAGED;FR - DP - DEV - FAB - BDP - Centre de Profit - MANAGED;framework-items;bdp-centre-profit;FRFRAPEFWDEVDPBDPCENTREDEPROFITMANAGED0001-10;Créé
+71;FR - DP - DEV - FAB - Framework – MANAGED;FR - DP - DEV - FAB - BDP - Facture Client - MANAGED;framework-items;bdp-facture-client;FRFRAPEFWDEVDPBDPFACTURECLIENTMANAGED0001-6;Créé
+72;FR - DP - DEV - FAB - Framework – MANAGED;FR - DP - DEV - FAB - BDP - Performance Engagement - MANAGED;framework-items;bdp-performance-engagement;FRFRAPEFWDEVDPBDPPERFORMANCEFINANCIEREMANAGED0001-6;Créé
+73;FR - DP - DEV - FAB - ADP - MDS - MANAGED;FR - DP - DEV - FAB - DEV - DANIELS - MANAGED;adp-mds;dev-daniels;FRFRAPEFWDEVDPDEVDANIELS0001-01;Créé
+74;FR - DP - DEV - FAB - ADP - MDS - MANAGED;FR - DP - DEV - FAB - DEV - HOUSSEM - MANAGED;adp-mds;dev-houssem;FRFRAPEFWDEVDPDEVHOUSSEMS0001-01;Créé
+75;FR - DP - DEV - FAB - ADP - MDS - MANAGED;FR - DP - DEV - FAB - DEV - YASSINE - MANAGED;adp-mds;dev-yassine;FRFRAPEFWDEVDPDEVYASSINE0001-1;Créé
+76;FR - DP - DEV - FAB - DEV - HOUSSEM - MANAGED;FR - DP - DEV - FAB - ADP - Referentiel - MANAGED;dev-houssem;adp-referentiel;FRFRAPEFWDEVDPADPREFERENTIELMANAGED0001-2;À créer
+77;FR - DP - DEV - FAB - DEV - DANIELS - MANAGED;FR - DP - DEV - FAB - ADP - Referentiel - MANAGED;dev-daniels;adp-referentiel;FRFRAPEFWDEVDPADPREFERENTIELMANAGED0001-3;À créer
+78;FR - DP - DEV - FAB - DEV - YASSINE - MANAGED;FR - DP - DEV - FAB - ADP - Referentiel - MANAGED;dev-yassine;adp-referentiel;FRFRAPEFWDEVDPADPREFERENTIELMANAGED0001-4;À créer
+79;FR - DP - DEV - FAB - BDP - Engagement - MANAGED;FR - DP - DEV - FAB - ADP - Referentiel - MANAGED;bdp-engagement;adp-referentiel;FRFRAPEFWDEVDPADPREFERENTIELMANAGED0001-5;À créer
+80;FR - DP - DEV - FAB - BDP - Collaborateur - MANAGED;FR - DP - DEV - FAB - ADP - Referentiel - MANAGED;bdp-collaborateur;adp-referentiel;FRFRAPEFWDEVDPADPREFERENTIELMANAGED0001-6;À créer
+81;FR - DP - DEV - FAB - BDP - Compte - MANAGED;FR - DP - DEV - FAB - ADP - Referentiel - MANAGED;bdp-compte;adp-referentiel;FRFRAPEFWDEVDPADPREFERENTIELMANAGED0001-7;À créer
+82;FR - DP - DEV - FAB - BDP - Facture Client - MANAGED;FR - DP - DEV - FAB - ADP - Referentiel - MANAGED;bdp-facture-client;adp-referentiel;FRFRAPEFWDEVDPADPREFERENTIELMANAGED0001-8;À créer
+83;FR - DP - DEV - FAB - BDP - Performance Engagement - MANAGED;FR - DP - DEV - FAB - ADP - Referentiel - MANAGED;bdp-performance-engagement;adp-referentiel;FRFRAPEFWDEVDPADPREFERENTIELMANAGED0001-9;À créer
+84;FR - DP - DEV - FAB - UCS - Reporting Fees & WIP - Managed;FR - DP - DEV - FAB - ADP - Referentiel - MANAGED;ucs-reporting-fees-wip;adp-referentiel;FRFRAPEFWDEVDPADPREFERENTIELMANAGED0001-10;À créer
+85;FR - DP - DEV - FAB - Framework – MANAGED;FR - DP - DEV - FAB - ADP - Referentiel - MANAGED;framework-items;adp-referentiel;FRFRAPEFWDEVDPADPREFERENTIELMANAGED0001-11;À créer

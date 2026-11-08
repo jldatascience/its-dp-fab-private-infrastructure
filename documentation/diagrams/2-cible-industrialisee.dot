@@ -1,0 +1,12 @@
+digraph G { rankdir=TB; graph [fontname="Arial", fontsize=12, labelloc=t, label="2 — Cible industrialisée et frontières de responsabilité", pad=0.3, ranksep=0.5];
+node [fontname="Arial", fontsize=10, shape=box, style="rounded,filled", fillcolor=white]; edge [fontname="Arial", fontsize=9];
+subgraph cluster_p { label="Équipe produit"; style=filled; fillcolor="#E6F4EA";
+  m [label="manifests/<cat>/manifest-<dp>.yml\n(1 par data product, 4 environnements)"]; inv [label="inventory/\nréférences KV et SPN, inventaire DEV"]; val [label="validate-manifests.py\ndeployable recalculé"]; }
+subgraph cluster_m { label="Mick (socle Terraform, Iskander / Mohamed)"; style=filled; fillcolor="#E8F0FB";
+  sch [label="Schéma officiel du manifeste"]; env [label="Configuration réseau par environnement\nVNet · subnet · RG · tags"]; mod [label="Modules Terraform\nPrivate Link · Private Endpoint · politiques · règles · MPE"]; }
+subgraph cluster_g { label="Global"; style="filled,dashed"; fillcolor="#F1F1F1";
+  net [label="Souscriptions · hub · peering · DNS · firewall"]; cap [label="Capacités Fabric"]; spn [label="SPN · Key Vault (références)"]; }
+subgraph cluster_r { label="Résultat par environnement (ITG → PPR → PRD)"; style=filled; fillcolor=white;
+  pe [label="Par workspace :\nPrivate Link + Private Endpoint + DNS\npolitique entrant fermé / OAP\nrègles P1-P6, MPE P4/P7"]; }
+sch -> m [label="impose le format"]; m -> val; inv -> m [label="références"]; val -> mod [label="manifeste sans bloquant"];
+net -> env [label="valeurs"]; env -> mod; cap -> mod; spn -> mod [style=dashed, label="identité"]; mod -> pe; }

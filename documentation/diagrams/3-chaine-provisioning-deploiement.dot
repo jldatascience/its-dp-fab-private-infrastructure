@@ -1,0 +1,7 @@
+digraph G { rankdir=LR; graph [fontname="Arial", fontsize=12, labelloc=t, label="3 — Chaîne de provisioning puis de déploiement Fabric", pad=0.3];
+node [fontname="Arial", fontsize=10, shape=box, style="rounded,filled", fillcolor=white]; edge [fontname="Arial", fontsize=9];
+subgraph cluster_a { label="A. Provisioning réseau — Terraform (Mick)"; style=filled; fillcolor="#E8F0FB";
+  a0 [label="Prérequis Global\nsouscription · capacité · réseau"]; a1 [label="1. Framework\nworkspace · PL · PE · politiques\nP1 P3 P5 · MPE P4"]; a2 [label="2. ADP et BDP\n(sans ordre entre eux)\nP2 · MPE P7"]; a3 [label="Approbation manuelle\ndes MPE (propriétaire cible)", fillcolor="#FFE5B4"]; a4 [label="3. UCS\n(aucune dépendance)"]; }
+subgraph cluster_b { label="B. Déploiement des items — CD du socle its-dp-fab-cicd-common (équipe produit)"; style=filled; fillcolor="#E6F4EA";
+  b1 [label="Framework\n(porte Framework)"]; b2 [label="ADP / BDP\nconfig.yml · parameter.yml\ndependencies.yml"]; b3 [label="UCS"]; }
+a0 -> a1 -> a2 -> a3; a0 -> a4; a3 -> b1 [label="réseau prêt"]; a4 -> b3; b1 -> b2; }

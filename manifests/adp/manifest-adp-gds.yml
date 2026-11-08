@@ -1,0 +1,168 @@
+# ==============================================================================
+# Manifeste Data Platform Fabric — GDS (adp-gds)
+# PROPOSITION DE L’ÉQUIPE PRODUIT — ce schéma N’EST PAS le schéma officiel de Mick.
+# Il servira de contrat déclaratif de travail jusqu’à la publication du schéma officiel.
+# Généré le 2026-11-08 à partir des pièces jointes (voir traceability.sources).
+#
+# Statuts des valeurs : CONFIRMÉ (source citée) · [A_VERIFIER] · [A_RENSEIGNER] ·
+# [A_CONFIRMER_MICK] · [A_CONFIRMER_GLOBAL] · [HORS_PERIMETRE_PRODUIT]
+# Un marqueur « Bloquant : oui » rend le manifeste NON DÉPLOYABLE.
+# Ne jamais écrire de valeur secrète dans ce fichier (références Key Vault uniquement).
+# ==============================================================================
+schemaVersion: dp-fabric-manifest/0.2-proposition   # [A_CONFIRMER_MICK] Quoi : schéma officiel du manifeste | Pourquoi : le point d’entrée Data Platform imposera son propre format | Qui : Mick | Où : dépôt de la refonte CI/CD as config | Bloquant : oui
+deployable: false   # recalculé par scripts/validate-manifests.py ; jamais forcé à la main
+
+dataProduct:
+  id: adp-gds
+  name: "GDS"
+  category: adp
+  repository: its-dp-fab-adp-gds-managed   # CONFIRMÉ (indication du 08/11/2026 : dépôt its-dp-fab-adp-gds-managed)
+  sourceApplication: null   # [A_RENSEIGNER] Quoi : application ou base source de GDS | Pourquoi : règle P1 (gateway) sur le Framework et connexion <OBJET>_<ENV>_DP_FABRIC | Qui : équipe produit | Où : DAG, inventaire 02_fab_cli.py (connexions, gateways) | Bloquant : non
+  owner: null   # [A_RENSEIGNER] Quoi : groupe Entra propriétaire du data product | Pourquoi : approbation des MPE entrants, gouvernance | Qui : responsable du data product / Alexandre | Où : annuaire Entra KPMG France | Bloquant : oui
+  responsibleTeam: null   # [A_RENSEIGNER] Quoi : équipe responsable | Pourquoi : escalade et support | Qui : équipe produit | Où : organisation Data Platform | Bloquant : non
+  dagReference: null   # [A_RENSEIGNER] Quoi : référence du DAG du data product | Pourquoi : contrôle DAG / manifeste / infra annoncé par Mick ; le DAG DMND0003667 décrit le Data Domain Contrôle de Gestion, pas ce workspace | Qui : architecte | Où : référentiel des DAG | Bloquant : oui
+  classification: null   # [A_RENSEIGNER] Quoi : classification des données (public, interne, confidentiel, restreint) | Pourquoi : valeurs standard et labels MIP | Qui : responsable du data product / sécurité | Où : politique de classification KPMG | Bloquant : oui
+  criticality: null   # [A_RENSEIGNER] Quoi : criticité (BC0 à BCx) | Pourquoi : les valeurs standard de Mick dépendent de la criticité | Qui : responsable du data product | Où : catalogue des data products (le DAG Finance x CDG indique BC0 pour son propre périmètre) | Bloquant : oui
+
+environments:
+  DEV:
+    workspaceName: "FR - DP - DEV - FAB - ADP - GDS - MANAGED"   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
+    workspaceId: 69943001-74e6-49d2-a9be-b57abc8f4be9   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
+    status: existing-privatized   # CONFIRMÉ (Private Endpoint présent dans le VNet DEV)
+    capacityRef: frfrfcdevdp0001   # CONFIRMÉ (capture des capacités Fabric) — F16, ID DC14404E-ABDA-4191-8A07-99980BEC2D41
+    gitIntegration: true   # DEV relié à Git (develop, dossier fabric)
+    existingResources:   # reprise Terraform (import) — voir documentation/terraform-existing-resources.md
+      privateEndpoint: FRFRAPEFWDEVDPADPGDSMANAGED0001-1   # CONFIRMÉ (configuration JSON du VNet fralzvnetdev1055)
+      privateIpCount: 5   # CONFIRMÉ (ipConfigurations du VNet)
+      privateLinkService: frfrpldevdpadpgdsmanaged0001   # CONFIRMÉ (Inventaire_ressources_Azure_Fabric (onglet Ressources, RG frappdevdp0001) ; type Microsoft.Fabric/privateLinkServicesForFabric, location Global)
+      privateEndpointNic: FRFRAPEFWDEVDPADPGDSMANAGED0001-1-nic   # CONFIRMÉ (Inventaire_ressources_Azure_Fabric (onglet Ressources, RG frappdevdp0001))
+      dnsRecords: 0   # [A_VERIFIER] Quoi : enregistrements DNS du Private Endpoint | Pourquoi : aucun enregistrement listé alors que le PE existe : résolution privée à contrôler | Qui : équipe produit / Global | Où : zone privatelink.fabric.microsoft.com (record-set list) | Bloquant : non
+  ITG:
+    workspaceName: "FR - DP - ITG - FAB - ADP - GDS - MANAGED"   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
+    workspaceId: 071742c7-55c7-4fda-9ee2-a6eab2c7951c   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
+    status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
+    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : CONTRADICTION : capture = frfrfcdevdp0001 (DC14404E…) ; anciens deploy.py = 29CDC503-AA27-48E1-A41E-4D6AF4472F00 | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
+    existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
+    plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026)
+      privateEndpoint: FRFRAPEFWITGDPADPGDSMANAGED0001-1   # FRFRAPEFW<ENV>DP<TOKEN>MANAGED0001-1
+      privateLinkService: frfrplitgdpadpgdsmanaged0001   # frfrpl<env>dp<token>managed0001 (convention confirmée par l’inventaire des ressources DEV)
+      managedPrivateEndpointPattern: FRFRAPEFWITGDP<TOKEN_CIBLE>MANAGED0001-<n>   # suffixe -1 réservé au PE entrant
+  PPR:
+    workspaceName: "FR - DP - PPR - FAB - ADP - GDS - MANAGED"   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
+    workspaceId: 87241b71-d6a3-42ea-b450-5386e20dc2a2   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
+    status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
+    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : CONTRADICTION : capture = frfrfcdevdp0001 (DC14404E…) ; anciens deploy.py = 29CDC503-AA27-48E1-A41E-4D6AF4472F00 | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
+    existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
+    plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026)
+      privateEndpoint: FRFRAPEFWPPRDPADPGDSMANAGED0001-1   # FRFRAPEFW<ENV>DP<TOKEN>MANAGED0001-1
+      privateLinkService: frfrplpprdpadpgdsmanaged0001   # frfrpl<env>dp<token>managed0001 (convention confirmée par l’inventaire des ressources DEV)
+      managedPrivateEndpointPattern: FRFRAPEFWPPRDP<TOKEN_CIBLE>MANAGED0001-<n>   # suffixe -1 réservé au PE entrant
+  PRD:
+    workspaceName: "FR - DP - PRD - FAB - ADP - GDS - MANAGED"   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
+    workspaceId: 55038f5c-c713-4e41-90c5-29df514739cf   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
+    status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
+    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcprddp0001, F32) | Pourquoi : Capacity ID absent de la capture ; anciens deploy.py = 8B3B9E06-C303-40FC-87B5-7FA949901720 | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
+    existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
+    plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026)
+      privateEndpoint: FRFRAPEFWPRDDPADPGDSMANAGED0001-1   # FRFRAPEFW<ENV>DP<TOKEN>MANAGED0001-1
+      privateLinkService: frfrplprddpadpgdsmanaged0001   # frfrpl<env>dp<token>managed0001 (convention confirmée par l’inventaire des ressources DEV)
+      managedPrivateEndpointPattern: FRFRAPEFWPRDDP<TOKEN_CIBLE>MANAGED0001-<n>   # suffixe -1 réservé au PE entrant
+
+privatisation:
+  networkProfile: private   # standard : accès public refusé, Private Link + Private Endpoint, OAP active
+  inbound:
+    publicAccess: deny
+    workspacePrivateLink: true
+    privateEndpoint: true   # un Private Endpoint dédié dans le subnet MUTUALISÉ de l’environnement (aucun VNet ni subnet par workspace)
+  outbound:
+    accessProtection: true
+  dns:
+    zone: privatelink.fabric.microsoft.com   # CONFIRMÉ (fiche « ID de la zone DNS privée à utiliser » (zone privatelink.fabric.microsoft.com du hub))
+    zoneId: /subscriptions/1fe4e122-3c20-4707-88ed-3ce3fa2e259f/resourceGroups/frinfalzconnectivityprivatedns0001/providers/Microsoft.Network/privateDnsZones/privatelink.fabric.microsoft.com   # CONFIRMÉ : souscription fr-connectivity, zone globale gérée par Terraform (tag Status: Managed by Terraform)
+    zoneIdOtherEnvironments: null   # [A_CONFIRMER_GLOBAL] Quoi : même zone pour ITG, PPR et PRD ? | Pourquoi : la zone n’a qu’un seul lien de réseau virtuel ; les enregistrements des Private Endpoints ITG/PPR/PRD doivent y être résolus | Qui : Global / équipe connectivité | Où : fiche de la zone DNS, liens VNet | Bloquant : non
+    recordRegistration: null   # [HORS_PERIMETRE_PRODUIT] Quoi : qui écrit les enregistrements A des Private Endpoints dans la zone (DNS zone group du module ou Terraform connectivité) | Pourquoi : zone gérée par Terraform : une écriture hors de ce code crée de la dérive ; le VNet DEV résout via le DNS du hub 10.113.192.100 | Qui : Global / équipe réseau | Où : abonnement du hub | Bloquant : non
+  sharedNetworkRef:   # ressources mutualisées de l’environnement : DEV confirmé ; ITG, PPR, PRD = nomenclature DEV transposée (décision du 08/11/2026)
+    DEV: {resourceGroup: frappdevdp0001, vnet: fralzvnetdev1055, subnet: snet-kpmg-backend, routeTable: fr_rt_fralzvnetdev1055}   # CONFIRMÉ (export VNet, inventaire des ressources)
+    ITG: {resourceGroup: frappitgdp0001, vnet: fralzvnetitg1055, subnet: snet-kpmg-backend, routeTable: fr_rt_fralzvnetitg1055}
+    PPR: {resourceGroup: frapppprdp0001, vnet: fralzvnetppr1055, subnet: snet-kpmg-backend, routeTable: fr_rt_fralzvnetppr1055}
+    PRD: {resourceGroup: frappprddp0001, vnet: fralzvnetprd1055, subnet: snet-kpmg-backend, routeTable: fr_rt_fralzvnetprd1055}
+    addressing: null   # [HORS_PERIMETRE_PRODUIT] Quoi : souscription, plage IP, DNS et peering de ITG, PPR, PRD ; numéro 1055 du VNet repris tel quel | Pourquoi : valeurs du Global, hors manifeste | Qui : Global / Mick | Où : inventory/environment-network-reference.yml | Bloquant : non
+
+flows:   # uniquement les flux dont la règle est portée par CE workspace ; les flux entrants sont calculés par le validateur
+  - id: adp-gds-p6-git
+    pattern: P6
+    direction: sortant
+    source: adp-gds
+    target: "Dépôt GitHub du data product (branche develop, dossier fabric)"
+    mechanism: "Git outbound policy"
+    ruleCarriedBy: adp-gds   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: "HTTPS"
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Synchronisation Git Integration du workspace DEV avec la branche develop (dossier fabric)"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Data Platform (administrateur du workspace)"
+    validationStatus:
+      DEV: "configuré (DEV)"
+      ITG: "non applicable (non synchronisé)"
+      PPR: "non applicable (non synchronisé)"
+      PRD: "non applicable (non synchronisé)"
+    evidence: "Cartographie_Flux_Workspaces_Fabric.xlsx (onglets Matrice, Patterns & actions) — P6 sur la diagonale"
+  - id: adp-gds-p2-framework
+    pattern: P2
+    direction: sortant
+    source: adp-gds
+    target: "framework-items"
+    mechanism: "Data Connection Rule « Fabric Data Pipelines » (Invoke Pipeline data product → Framework, connexion DP-Fabric-Global-APR)"
+    ruleCarriedBy: adp-gds   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Orchestration par les pipelines « sur étagère » du Framework"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Data Platform (administrateur du workspace)"
+    validationStatus:
+      DEV: "à vérifier"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "Cartographie_Flux_Workspaces_Fabric.xlsx (onglets Matrice, Patterns & actions)"
+    # [A_VERIFIER] GDS absent de la matrice de la cartographie v2 : flux à confirmer
+
+dependencies:
+  deployment:   # dépendance de déploiement des items Fabric (distincte des flux)
+    framework: required   # porte Framework de la CD des items
+  frameworkItemsConsumed: null   # [A_RENSEIGNER] Quoi : items Framework appelés | Pourquoi : contrôle de la porte Framework (pré-vol) | Qui : équipe produit | Où : parameter.yml du dépôt, scripts ref_dynamique | Bloquant : non
+  data:   # dépendances de données (fonctionnelles, jamais bloquantes pour le déploiement)
+    []   # ADP : alimenté par son application source
+  externalConnections:
+    - name: null   # [A_RENSEIGNER] Quoi : connexion gateway vers la base source | Pourquoi : règle P1 sur le Framework | Qui : équipe produit | Où : portail Fabric > Gérer les connexions et passerelles | Bloquant : non
+
+security:
+  identityRef: sp-fabric-<ENV>   # CONFIRMÉ : un SPN par environnement, voir inventory/service-principals.yml
+  federatedIdentity: null   # [A_CONFIRMER_MICK] Quoi : identité fédérée (OIDC / Workload Identity Federation) du pipeline | Pourquoi : suppression des secrets client | Qui : Mick / Ops | Où : standard d’orchestration de la refonte | Bloquant : non
+  keyVaultRefs: inventory/keyvault-references.yml#sp-credentials   # références uniquement, aucune valeur
+  entraGroups:
+    admins: null   # [A_RENSEIGNER] Quoi : groupe Entra administrateur | Pourquoi : rôles du workspace (jamais un groupe du Global) | Qui : responsable du data product | Où : annuaire Entra KPMG France | Bloquant : non
+    contributors: null   # [A_RENSEIGNER] Quoi : groupe Entra contributeur | Pourquoi : rôles du workspace | Qui : responsable du data product | Où : annuaire Entra | Bloquant : non
+    viewers: null   # [A_RENSEIGNER] Quoi : groupe Entra lecteur | Pourquoi : rôles du workspace | Qui : responsable du data product | Où : annuaire Entra | Bloquant : non
+
+extensions: {}   # vide par défaut ; toute extension exige une justification et une validation sécurité
+
+traceability:
+  sources:
+    - "doc 1 — liste des workspaces par environnement"
+    - "doc 2 / doc 3 — contenu des dépôts (anciens deploy.py)"
+    - "configuration JSON du VNet fralzvnetdev1055"
+    - "Listing record_set par workspace (VF).xlsx"
+    - "PE managed listing (VF).xlsx"
+    - "Cartographie_Flux_Workspaces_Fabric.xlsx (onglets Matrice, Patterns & actions)"
+    - "Liste des interconnexions entre data products"
+    - "Service principal par environnement"
+    - "Key vault frfrkvdevdp0001 (export JSON + capture des secrets)"
+    - "capture des capacités Fabric"
+  validatedOn: null   # [A_RENSEIGNER] Quoi : date de validation | Pourquoi : traçabilité | Qui : responsable de validation | Où : revue du manifeste | Bloquant : non
+  validatedBy: null   # [A_RENSEIGNER] Quoi : responsable de validation | Pourquoi : traçabilité | Qui : équipe produit | Où : revue du manifeste | Bloquant : non
+  completeness: computed   # voir documentation/manifest-validation-report.md
+  globalTickets: [RITM6601337, RITM6601332, RITM6601335, RITM6601339]   # CONFIRMÉ : demandes de création des SPN (Service principal par environnement)

@@ -1,0 +1,42 @@
+# Gateways on-premise et connexions Fabric — identifiants non secrets uniquement
+# Source : liste des gateways utilisées (Recap_connexions_gateway_Fabric, onglets Gateways et Connexions)
+gateways:
+  - name: DP-FABRIC-GW-HORS-PROD
+    contact: fr-svcdp-dev@kpmg.fr
+    users: "FR-DEV-Data Platform-RITM6601337, … (liste tronquée dans la capture)"
+    status: actif
+    environments: [DEV]   # CONFIRMÉ pour DEV (connexions MDS et STAGING) ; ITG et PPR [A_CONFIRMER_GLOBAL] Quoi : gateway d’ITG et de PPR | Pourquoi : Gateway Connection Policy (P1) du Framework | Qui : administrateurs des gateways | Où : liste des connexions ITG/PPR | Bloquant : non
+  - name: DP-FABRIC-GW-PROD
+    contact: fr-svcdp-prd@kpmg.fr
+    users: "Wassim, FR-DEV-Data Platform-RITM66… (liste tronquée dans la capture)"
+    status: actif
+    environments: null   # [A_CONFIRMER_GLOBAL] Quoi : environnement servi (PRD attendu) | Pourquoi : Gateway Connection Policy PRD | Qui : administrateurs des gateways | Où : liste des connexions PRD | Bloquant : non
+  - name: Gateway_prod
+    contact: fr-svcbi-prod@kpmg.fr
+    users: "Wassim, FR-PROD-Data Platform-RITM… (liste tronquée dans la capture)"
+    status: actif
+    environments: null   # [A_VERIFIER] Quoi : usage par la Data Platform (contact BI, SPN PROD présent) | Pourquoi : choisir la gateway PRD entre DP-FABRIC-GW-PROD et Gateway_prod | Qui : Data Platform / équipe BI | Où : liste des connexions PRD | Bloquant : non
+connections:
+  - name: DP-Fabric-Global-APR
+    id: 727cf65b-4210-44f1-aaf7-ac7f0ab313ca
+    type: Pipelines de données Fabric   # chemin FabricDataPipelines ; gateway non affichée
+    authentication: Service Principal
+    usedBy: [framework-items]   # Invoke Pipeline (P2, P3) ; reprise par un ADP seulement si un item l’utilise (README des dépôts)
+  - name: STAGING_DEV_DP_FABRIC
+    id: 769c9eaa-1056-4dd5-aefe-b259fceea6d0
+    type: SQL Server
+    gateway: DP-FABRIC-GW-HORS-PROD
+    server: "FRPARAPP9042\\SQLDEV"
+    database: STAGING
+    authentication: Windows
+    usedBy: null   # [A_VERIFIER] Quoi : data product utilisateur | Pourquoi : rattacher la règle P1 | Qui : équipe produit | Où : 02_fab_cli.py | Bloquant : non
+  - name: MDS_DEV_DP_FABRIC
+    id: d407c25a-bb22-48a7-916c-256b111a4c9f
+    type: SQL Server
+    gateway: DP-FABRIC-GW-HORS-PROD
+    server: "FRPARAPP9042\\SQLDEV"
+    database: MDM
+    authentication: Windows
+    usedBy: [framework-items, adp-mds]   # copie P1 exécutée par le Framework vers le Lakehouse MDS
+missingConnections:   # aucune connexion listée pour ITG, PPR, PRD ni pour les autres sources (IBS, Référentiel, Sirene, GDS)
+  - null   # [A_RENSEIGNER] Quoi : connexions ITG/PPR/PRD et autres sources | Pourquoi : Gateway Connection Policy (P1) par environnement | Qui : Data Platform | Où : portail Fabric > Gérer les connexions et passerelles | Bloquant : non

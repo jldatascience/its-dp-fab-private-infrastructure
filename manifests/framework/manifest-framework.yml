@@ -1,0 +1,582 @@
+# ==============================================================================
+# Manifeste Data Platform Fabric — Framework Items (framework-items)
+# PROPOSITION DE L’ÉQUIPE PRODUIT — ce schéma N’EST PAS le schéma officiel de Mick.
+# Il servira de contrat déclaratif de travail jusqu’à la publication du schéma officiel.
+# Généré le 2026-11-08 à partir des pièces jointes (voir traceability.sources).
+#
+# Statuts des valeurs : CONFIRMÉ (source citée) · [A_VERIFIER] · [A_RENSEIGNER] ·
+# [A_CONFIRMER_MICK] · [A_CONFIRMER_GLOBAL] · [HORS_PERIMETRE_PRODUIT]
+# Un marqueur « Bloquant : oui » rend le manifeste NON DÉPLOYABLE.
+# Ne jamais écrire de valeur secrète dans ce fichier (références Key Vault uniquement).
+# ==============================================================================
+schemaVersion: dp-fabric-manifest/0.2-proposition   # [A_CONFIRMER_MICK] Quoi : schéma officiel du manifeste | Pourquoi : le point d’entrée Data Platform imposera son propre format | Qui : Mick | Où : dépôt de la refonte CI/CD as config | Bloquant : oui
+deployable: false   # recalculé par scripts/validate-manifests.py ; jamais forcé à la main
+
+dataProduct:
+  id: framework-items
+  name: "Framework Items"
+  category: framework
+  repository: its-dp-fab-item-framework-managed   # CONFIRMÉ (doc 2 / doc 3 — contenu des dépôts (anciens deploy.py))
+  owner: null   # [A_RENSEIGNER] Quoi : groupe Entra propriétaire du data product | Pourquoi : approbation des MPE entrants, gouvernance | Qui : responsable du data product / Alexandre | Où : annuaire Entra KPMG France | Bloquant : oui
+  responsibleTeam: null   # [A_RENSEIGNER] Quoi : équipe responsable | Pourquoi : escalade et support | Qui : équipe produit | Où : organisation Data Platform | Bloquant : non
+  dagReference: null   # [A_RENSEIGNER] Quoi : référence du DAG du data product | Pourquoi : contrôle DAG / manifeste / infra annoncé par Mick ; le DAG DMND0003667 décrit le Data Domain Contrôle de Gestion, pas ce workspace | Qui : architecte | Où : référentiel des DAG | Bloquant : oui
+  classification: null   # [A_RENSEIGNER] Quoi : classification des données (public, interne, confidentiel, restreint) | Pourquoi : valeurs standard et labels MIP | Qui : responsable du data product / sécurité | Où : politique de classification KPMG | Bloquant : oui
+  criticality: null   # [A_RENSEIGNER] Quoi : criticité (BC0 à BCx) | Pourquoi : les valeurs standard de Mick dépendent de la criticité | Qui : responsable du data product | Où : catalogue des data products (le DAG Finance x CDG indique BC0 pour son propre périmètre) | Bloquant : oui
+
+environments:
+  DEV:
+    workspaceName: "FR - DP - DEV - FAB - Framework - MANAGED"   # CONFIRMÉ (doc 1 — liste des workspaces par environnement)
+    workspaceId: 779f53bb-fc39-4c1a-a580-e9794416486b   # CONFIRMÉ (dérivé du FQDN DNS du workspace — Listing record_set par workspace (VF).xlsx)
+    status: existing-privatized   # CONFIRMÉ (Private Endpoint présent dans le VNet DEV)
+    capacityRef: frfrfcdevdp0001   # CONFIRMÉ (capture des capacités Fabric) — F16, ID DC14404E-ABDA-4191-8A07-99980BEC2D41
+    gitIntegration: true   # DEV relié à Git (develop, dossier fabric)
+    existingResources:   # reprise Terraform (import) — voir documentation/terraform-existing-resources.md
+      privateEndpoint: FRFRAPEFWDEVDPFRAMEWORKMANAGED0001-1   # CONFIRMÉ (configuration JSON du VNet fralzvnetdev1055)
+      privateIpCount: 5   # CONFIRMÉ (ipConfigurations du VNet)
+      privateLinkService: frfrpldevdpframeworkmanaged0001   # CONFIRMÉ (Inventaire_ressources_Azure_Fabric (onglet Ressources, RG frappdevdp0001) ; type Microsoft.Fabric/privateLinkServicesForFabric, location Global)
+      privateEndpointNic: FRFRAPEFWDEVDPFRAMEWORKMANAGED0001-1-nic   # CONFIRMÉ (Inventaire_ressources_Azure_Fabric (onglet Ressources, RG frappdevdp0001))
+      dnsRecords: 5   # CONFIRMÉ (Listing record_set par workspace (VF).xlsx), nslookup OK
+  ITG:
+    workspaceName: "FR - DP - ITG - FAB - Framework - MANAGED"   # CONFIRMÉ (doc 1 — liste des workspaces par environnement)
+    workspaceId: e3a72e96-8582-4634-b97b-f31466286abf   # CONFIRMÉ (ancien deploy.py, doc 2 / doc 3 — contenu des dépôts (anciens deploy.py) ; exactitude confirmée le 08/11/2026)
+    status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
+    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : CONTRADICTION : capture = frfrfcdevdp0001 (DC14404E…) ; anciens deploy.py = 29CDC503-AA27-48E1-A41E-4D6AF4472F00 | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
+    existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
+    plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026)
+      privateEndpoint: FRFRAPEFWITGDPFRAMEWORKMANAGED0001-1   # FRFRAPEFW<ENV>DP<TOKEN>MANAGED0001-1
+      privateLinkService: frfrplitgdpframeworkmanaged0001   # frfrpl<env>dp<token>managed0001 (convention confirmée par l’inventaire des ressources DEV)
+      managedPrivateEndpointPattern: FRFRAPEFWITGDP<TOKEN_CIBLE>MANAGED0001-<n>   # suffixe -1 réservé au PE entrant
+  PPR:
+    workspaceName: "FR - DP - PPR - FAB - Framework - MANAGED"   # CONFIRMÉ (doc 1 — liste des workspaces par environnement)
+    workspaceId: b85ffffa-5424-4f0d-9b14-8b12d4c2258d   # CONFIRMÉ (ancien deploy.py, doc 2 / doc 3 — contenu des dépôts (anciens deploy.py) ; exactitude confirmée le 08/11/2026)
+    status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
+    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : CONTRADICTION : capture = frfrfcdevdp0001 (DC14404E…) ; anciens deploy.py = 29CDC503-AA27-48E1-A41E-4D6AF4472F00 | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
+    existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
+    plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026)
+      privateEndpoint: FRFRAPEFWPPRDPFRAMEWORKMANAGED0001-1   # FRFRAPEFW<ENV>DP<TOKEN>MANAGED0001-1
+      privateLinkService: frfrplpprdpframeworkmanaged0001   # frfrpl<env>dp<token>managed0001 (convention confirmée par l’inventaire des ressources DEV)
+      managedPrivateEndpointPattern: FRFRAPEFWPPRDP<TOKEN_CIBLE>MANAGED0001-<n>   # suffixe -1 réservé au PE entrant
+  PRD:
+    workspaceName: "FR - DP - PRD - FAB - Framework - MANAGED"   # CONFIRMÉ (doc 1 — liste des workspaces par environnement)
+    workspaceId: cd3a7607-2db7-4ea9-9f79-e041c17c59b6   # CONFIRMÉ (ancien deploy.py, doc 2 / doc 3 — contenu des dépôts (anciens deploy.py) ; exactitude confirmée le 08/11/2026)
+    status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
+    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcprddp0001, F32) | Pourquoi : Capacity ID absent de la capture ; anciens deploy.py = 8B3B9E06-C303-40FC-87B5-7FA949901720 | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
+    existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
+    plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026)
+      privateEndpoint: FRFRAPEFWPRDDPFRAMEWORKMANAGED0001-1   # FRFRAPEFW<ENV>DP<TOKEN>MANAGED0001-1
+      privateLinkService: frfrplprddpframeworkmanaged0001   # frfrpl<env>dp<token>managed0001 (convention confirmée par l’inventaire des ressources DEV)
+      managedPrivateEndpointPattern: FRFRAPEFWPRDDP<TOKEN_CIBLE>MANAGED0001-<n>   # suffixe -1 réservé au PE entrant
+
+privatisation:
+  networkProfile: private   # standard : accès public refusé, Private Link + Private Endpoint, OAP active
+  inbound:
+    publicAccess: deny
+    workspacePrivateLink: true
+    privateEndpoint: true   # un Private Endpoint dédié dans le subnet MUTUALISÉ de l’environnement (aucun VNet ni subnet par workspace)
+  outbound:
+    accessProtection: true
+  dns:
+    zone: privatelink.fabric.microsoft.com   # CONFIRMÉ (fiche « ID de la zone DNS privée à utiliser » (zone privatelink.fabric.microsoft.com du hub))
+    zoneId: /subscriptions/1fe4e122-3c20-4707-88ed-3ce3fa2e259f/resourceGroups/frinfalzconnectivityprivatedns0001/providers/Microsoft.Network/privateDnsZones/privatelink.fabric.microsoft.com   # CONFIRMÉ : souscription fr-connectivity, zone globale gérée par Terraform (tag Status: Managed by Terraform)
+    zoneIdOtherEnvironments: null   # [A_CONFIRMER_GLOBAL] Quoi : même zone pour ITG, PPR et PRD ? | Pourquoi : la zone n’a qu’un seul lien de réseau virtuel ; les enregistrements des Private Endpoints ITG/PPR/PRD doivent y être résolus | Qui : Global / équipe connectivité | Où : fiche de la zone DNS, liens VNet | Bloquant : non
+    recordRegistration: null   # [HORS_PERIMETRE_PRODUIT] Quoi : qui écrit les enregistrements A des Private Endpoints dans la zone (DNS zone group du module ou Terraform connectivité) | Pourquoi : zone gérée par Terraform : une écriture hors de ce code crée de la dérive ; le VNet DEV résout via le DNS du hub 10.113.192.100 | Qui : Global / équipe réseau | Où : abonnement du hub | Bloquant : non
+  sharedNetworkRef:   # ressources mutualisées de l’environnement : DEV confirmé ; ITG, PPR, PRD = nomenclature DEV transposée (décision du 08/11/2026)
+    DEV: {resourceGroup: frappdevdp0001, vnet: fralzvnetdev1055, subnet: snet-kpmg-backend, routeTable: fr_rt_fralzvnetdev1055}   # CONFIRMÉ (export VNet, inventaire des ressources)
+    ITG: {resourceGroup: frappitgdp0001, vnet: fralzvnetitg1055, subnet: snet-kpmg-backend, routeTable: fr_rt_fralzvnetitg1055}
+    PPR: {resourceGroup: frapppprdp0001, vnet: fralzvnetppr1055, subnet: snet-kpmg-backend, routeTable: fr_rt_fralzvnetppr1055}
+    PRD: {resourceGroup: frappprddp0001, vnet: fralzvnetprd1055, subnet: snet-kpmg-backend, routeTable: fr_rt_fralzvnetprd1055}
+    addressing: null   # [HORS_PERIMETRE_PRODUIT] Quoi : souscription, plage IP, DNS et peering de ITG, PPR, PRD ; numéro 1055 du VNet repris tel quel | Pourquoi : valeurs du Global, hors manifeste | Qui : Global / Mick | Où : inventory/environment-network-reference.yml | Bloquant : non
+
+flows:   # uniquement les flux dont la règle est portée par CE workspace ; les flux entrants sont calculés par le validateur
+  - id: framework-items-p6-git
+    pattern: P6
+    direction: sortant
+    source: framework-items
+    target: "Dépôt GitHub du data product (branche develop, dossier fabric)"
+    mechanism: "Git outbound policy"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: "HTTPS"
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Synchronisation Git Integration du workspace DEV avec la branche develop (dossier fabric)"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Data Platform (administrateur du workspace)"
+    validationStatus:
+      DEV: "configuré (DEV)"
+      ITG: "non applicable (non synchronisé)"
+      PPR: "non applicable (non synchronisé)"
+      PRD: "non applicable (non synchronisé)"
+    evidence: "Cartographie_Flux_Workspaces_Fabric.xlsx (onglets Matrice, Patterns & actions) — P6 sur la diagonale"
+  - id: framework-p1-adp-mds
+    pattern: P1
+    direction: sortant
+    source: framework-items
+    target: "Gateway on-premise → Master Data Services (base MDM on-premise)"
+    mechanism: "Gateway Connection Policy (copie via la gateway, y compris vers le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    gateway:
+      DEV: DP-FABRIC-GW-HORS-PROD   # CONFIRMÉ (liste des gateways utilisées (Recap_connexions_gateway_Fabric, onglets Gateways et Connexions))
+      ITG: null   # [A_CONFIRMER_GLOBAL] Quoi : gateway ITG (DP-FABRIC-GW-HORS-PROD, DP-FABRIC-GW-PROD ou Gateway_prod ?) | Pourquoi : Gateway Connection Policy et connexion de l’environnement | Qui : administrateurs des gateways / Data Platform | Où : liste des gateways utilisées (Recap_connexions_gateway_Fabric, onglets Gateways et Connexions) | Bloquant : non
+      PPR: null   # [A_CONFIRMER_GLOBAL] Quoi : gateway PPR (DP-FABRIC-GW-HORS-PROD, DP-FABRIC-GW-PROD ou Gateway_prod ?) | Pourquoi : Gateway Connection Policy et connexion de l’environnement | Qui : administrateurs des gateways / Data Platform | Où : liste des gateways utilisées (Recap_connexions_gateway_Fabric, onglets Gateways et Connexions) | Bloquant : non
+      PRD: null   # [A_CONFIRMER_GLOBAL] Quoi : gateway PRD (DP-FABRIC-GW-HORS-PROD, DP-FABRIC-GW-PROD ou Gateway_prod ?) | Pourquoi : Gateway Connection Policy et connexion de l’environnement | Qui : administrateurs des gateways / Data Platform | Où : liste des gateways utilisées (Recap_connexions_gateway_Fabric, onglets Gateways et Connexions) | Bloquant : non
+    connection:
+      DEV: {name: MDS_DEV_DP_FABRIC, type: SQL Server, server: "FRPARAPP9042\\SQLDEV", database: MDM, authentication: Windows}   # CONFIRMÉ ; ID de connexion dans inventory/gateways-and-connections.yml
+      other: MDS_<ENV>_DP_FABRIC   # convention <OBJET>_<ENV>_DP_FABRIC ; connexions ITG/PPR/PRD non listées
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Ingestion de la source on-premise de MDS"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Data Platform ; administrateurs de la gateway"
+    validationStatus:
+      DEV: "configuré (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "Cartographie_Flux_Workspaces_Fabric.xlsx (onglets Matrice, Patterns & actions) — Framework → ADP : P1"
+  - id: framework-p1-adp-referentiel
+    pattern: P1
+    direction: sortant
+    source: framework-items
+    target: "Gateway on-premise → source du Référentiel (à renseigner)"
+    mechanism: "Gateway Connection Policy (copie via la gateway, y compris vers le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    gateway: null   # [A_RENSEIGNER] Quoi : gateway et connexion de la source | Pourquoi : Gateway Connection Policy du Framework | Qui : équipe produit | Où : liste des gateways utilisées (Recap_connexions_gateway_Fabric, onglets Gateways et Connexions) (connexion non listée) | Bloquant : non
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Ingestion de la source on-premise de Référentiel"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Data Platform ; administrateurs de la gateway"
+    validationStatus:
+      DEV: "à vérifier"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "aucune (Référentiel absent de la matrice)"
+    # [A_VERIFIER] Référentiel absent de la matrice de la cartographie v2 et dépôt sans item au 03/11/2026 : flux à confirmer après la première synchronisation Git
+  - id: framework-p1-adp-ibs
+    pattern: P1
+    direction: sortant
+    source: framework-items
+    target: "Gateway on-premise → IBS (base staging on-premise)"
+    mechanism: "Gateway Connection Policy (copie via la gateway, y compris vers le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    gateway: null   # [A_RENSEIGNER] Quoi : gateway et connexion de la source | Pourquoi : Gateway Connection Policy du Framework | Qui : équipe produit | Où : liste des gateways utilisées (Recap_connexions_gateway_Fabric, onglets Gateways et Connexions) (connexion non listée) | Bloquant : non
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Ingestion de la source on-premise de IBS"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Data Platform ; administrateurs de la gateway"
+    validationStatus:
+      DEV: "configuré (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "Cartographie_Flux_Workspaces_Fabric.xlsx (onglets Matrice, Patterns & actions) — Framework → ADP : P1"
+    # [A_RENSEIGNER] connexion gateway de la source absente de la liste des connexions (convention <OBJET>_<ENV>_DP_FABRIC)
+  - id: framework-p3-adp-mds
+    pattern: P3
+    direction: sortant
+    source: framework-items
+    target: "adp-mds"
+    mechanism: "Data Connection Rule « Fabric Data Pipelines » (Invoke Pipeline Framework → data product, connexion DP-Fabric-Global-APR)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Le Framework invoque un pipeline du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Data Platform (administrateur du workspace)"
+    validationStatus:
+      DEV: "configuré (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "Cartographie_Flux_Workspaces_Fabric.xlsx (onglets Matrice, Patterns & actions) — Framework → ADP : P3 ; ITG/PPR : « ? P3 / P4 / P5 »"
+  - id: framework-p3-adp-referentiel
+    pattern: P3
+    direction: sortant
+    source: framework-items
+    target: "adp-referentiel"
+    mechanism: "Data Connection Rule « Fabric Data Pipelines » (Invoke Pipeline Framework → data product, connexion DP-Fabric-Global-APR)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Le Framework invoque un pipeline du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Data Platform (administrateur du workspace)"
+    validationStatus:
+      DEV: "à vérifier"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "aucune (Référentiel absent de la matrice)"
+    # [A_VERIFIER] Référentiel absent de la matrice de la cartographie v2 et dépôt sans item au 03/11/2026 : flux à confirmer après la première synchronisation Git
+  - id: framework-p3-adp-ibs
+    pattern: P3
+    direction: sortant
+    source: framework-items
+    target: "adp-ibs"
+    mechanism: "Data Connection Rule « Fabric Data Pipelines » (Invoke Pipeline Framework → data product, connexion DP-Fabric-Global-APR)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Le Framework invoque un pipeline du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Data Platform (administrateur du workspace)"
+    validationStatus:
+      DEV: "configuré (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "Cartographie_Flux_Workspaces_Fabric.xlsx (onglets Matrice, Patterns & actions) — Framework → ADP : P3 ; ITG/PPR : « ? P3 / P4 / P5 »"
+  - id: framework-p4-adp-mds
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "adp-mds"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (adp-mds)"
+    validationStatus:
+      DEV: "MPE créé (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "MPE DEV FRFRAPEFWDEVDPADPMDSMANAGED0001-12 — statut « Créé »"
+  - id: framework-p4-adp-referentiel
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "adp-referentiel"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (adp-referentiel)"
+    validationStatus:
+      DEV: "À créer (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "MPE DEV FRFRAPEFWDEVDPADPREFERENTIELMANAGED0001-11 — statut « À créer »"
+  - id: framework-p4-adp-ibs
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "adp-ibs"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (adp-ibs)"
+    validationStatus:
+      DEV: "MPE créé (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "MPE DEV FRFRAPEFWDEVDPADPIBSMANAGED0001-8 — statut « Créé »"
+  - id: framework-p4-bdp-engagement
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "bdp-engagement"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (bdp-engagement)"
+    validationStatus:
+      DEV: "MPE créé (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "MPE DEV FRFRAPEFWDEVDPBDPENGAGEMENTMANAGED0001-8 — statut « Créé »"
+  - id: framework-p4-bdp-collaborateur
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "bdp-collaborateur"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (bdp-collaborateur)"
+    validationStatus:
+      DEV: "MPE créé (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "MPE DEV FRFRAPEFWDEVDPBDPCOLLABORATEURMANAGED0001-9 — statut « Créé »"
+  - id: framework-p4-bdp-compte
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "bdp-compte"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (bdp-compte)"
+    validationStatus:
+      DEV: "MPE créé (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "MPE DEV FRFRAPEFWDEVDPBDPCOMPTEMANAGED0001-8 — statut « Créé »"
+  - id: framework-p4-bdp-centre-profit
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "bdp-centre-profit"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (bdp-centre-profit)"
+    validationStatus:
+      DEV: "MPE créé (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "MPE DEV FRFRAPEFWDEVDPBDPCENTREDEPROFITMANAGED0001-10 — statut « Créé »"
+  - id: framework-p4-bdp-facture-client
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "bdp-facture-client"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (bdp-facture-client)"
+    validationStatus:
+      DEV: "MPE créé (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "MPE DEV FRFRAPEFWDEVDPBDPFACTURECLIENTMANAGED0001-6 — statut « Créé »"
+  - id: framework-p4-bdp-performance-engagement
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "bdp-performance-engagement"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (bdp-performance-engagement)"
+    validationStatus:
+      DEV: "MPE créé (DEV)"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "MPE DEV FRFRAPEFWDEVDPBDPPERFORMANCEFINANCIEREMANAGED0001-6 — statut « Créé »"
+  - id: framework-p4-adp-gds
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "adp-gds"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (adp-gds)"
+    validationStatus:
+      DEV: "MPE absent en DEV"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "Aucun MPE dans le listing DEV"
+  - id: framework-p4-adp-sirene
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "adp-sirene"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (adp-sirene)"
+    validationStatus:
+      DEV: "MPE absent en DEV"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "Aucun MPE dans le listing DEV"
+    # [A_VERIFIER] P4 attendu par analogie avec les autres ADP/BDP (data product ajouté le 08/11/2026, non privatisé en DEV)
+  - id: framework-p4-bdp-compte-engage
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "bdp-compte-engage"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (bdp-compte-engage)"
+    validationStatus:
+      DEV: "MPE absent en DEV"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "Aucun MPE dans le listing DEV"
+    # [A_VERIFIER] P4 attendu par analogie avec les autres ADP/BDP (data product ajouté le 08/11/2026, non privatisé en DEV)
+  - id: framework-p4-bdp-opportunite
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "bdp-opportunite"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (bdp-opportunite)"
+    validationStatus:
+      DEV: "MPE absent en DEV"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "Aucun MPE dans le listing DEV"
+    # [A_VERIFIER] P4 attendu par analogie avec les autres ADP/BDP (data product ajouté le 08/11/2026, non privatisé en DEV)
+  - id: framework-p4-bdp-contact
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "bdp-contact"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (bdp-contact)"
+    validationStatus:
+      DEV: "MPE absent en DEV"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "Aucun MPE dans le listing DEV"
+    # [A_VERIFIER] P4 attendu par analogie avec les autres ADP/BDP (data product ajouté le 08/11/2026, non privatisé en DEV)
+  - id: framework-p4-bdp-lead
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "bdp-lead"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (bdp-lead)"
+    validationStatus:
+      DEV: "MPE absent en DEV"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "Aucun MPE dans le listing DEV"
+    # [A_VERIFIER] P4 attendu par analogie avec les autres ADP/BDP (data product ajouté le 08/11/2026, non privatisé en DEV)
+  - id: framework-p4-bdp-campaign
+    pattern: P4
+    direction: sortant
+    source: framework-items
+    target: "bdp-campaign"
+    mechanism: "Managed Private Endpoint (écriture Spark du Framework dans le Lakehouse du data product)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: null   # [A_VERIFIER] Quoi : protocole du flux | Pourquoi : documentation du flux et contrôle DAG | Qui : architecte / équipe produit | Où : DAG du data product | Bloquant : non
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Les notebooks du Framework écrivent dans le Lakehouse du data product"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Propriétaire du workspace cible (bdp-campaign)"
+    validationStatus:
+      DEV: "MPE absent en DEV"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    evidence: "Aucun MPE dans le listing DEV"
+    # [A_VERIFIER] P4 attendu par analogie avec les autres ADP/BDP (data product ajouté le 08/11/2026, non privatisé en DEV)
+  - id: framework-p5-api-fabric
+    pattern: P5
+    direction: sortant
+    source: framework-items
+    target: "https://api.fabric.microsoft.com (endpoints globaux)"
+    mechanism: "Web Activity + Data Connection Rule REST/Web (URL autorisée)"
+    ruleCarriedBy: framework-items   # le flux est déclaré dans le manifeste du workspace qui porte la règle (PROPOSÉ)
+    protocol: "HTTPS"
+    port: null   # [A_VERIFIER] Quoi : port réseau | Pourquoi : seuls les flux N1 à N3 (réseau hub) passent par le firewall ; les flux internes Fabric n’ouvrent pas de règle Palo Alto (à confirmer) | Qui : architecte / réseau France | Où : DAG, matrice des flux réseau | Bloquant : non
+    businessJustification: "Référencement dynamique des ID (pipeline réutilisable du Framework) — décision des ateliers du 29/10/2026"
+    dagReference: null   # [A_RENSEIGNER] Quoi : référence du flux dans le DAG | Pourquoi : contrôle de cohérence DAG / manifeste annoncé par Mick | Qui : architecte | Où : DAG du data product | Bloquant : non
+    approvalOwner: "Sécurité (Aimad) pour l’URL en exception"
+    validationStatus:
+      DEV: "à vérifier"
+      ITG: "à faire"
+      PPR: "à faire"
+      PRD: "à faire"
+    # [A_VERIFIER] Flux PROPOSÉ : non présent en DEV dans la matrice (P5 seulement en « ? » pour ITG/PPR)
+
+dependencies:
+  deployment:   # dépendance de déploiement des items Fabric (distincte des flux)
+    framework: none   # le Framework est déployé en premier
+  data:   # dépendances de données (fonctionnelles, jamais bloquantes pour le déploiement)
+    []
+  externalConnections:
+    - name: DP-Fabric-Global-APR   # CONFIRMÉ : type « Pipelines de données Fabric » (FabricDataPipelines), authentification Service Principal ; utilisée par les Invoke Pipeline (P2, P3)
+    - name: STAGING_<ENV>_DP_FABRIC   # [A_VERIFIER] Quoi : data product utilisateur de la connexion STAGING (DEV : STAGING_DEV_DP_FABRIC, SQL Server FRPARAPP9042\SQLDEV, base STAGING, gateway DP-FABRIC-GW-HORS-PROD) | Pourquoi : rattacher la connexion et sa règle P1 au bon manifeste | Qui : équipe produit | Où : 02_fab_cli.py (connexions), liste des gateways utilisées (Recap_connexions_gateway_Fabric, onglets Gateways et Connexions) | Bloquant : non
+    - name: MDS_<ENV>_DP_FABRIC   # CONFIRMÉ en DEV : MDS_DEV_DP_FABRIC ; utilisée par la copie P1 vers MDS
+
+security:
+  identityRef: sp-fabric-<ENV>   # CONFIRMÉ : un SPN par environnement, voir inventory/service-principals.yml
+  federatedIdentity: null   # [A_CONFIRMER_MICK] Quoi : identité fédérée (OIDC / Workload Identity Federation) du pipeline | Pourquoi : suppression des secrets client | Qui : Mick / Ops | Où : standard d’orchestration de la refonte | Bloquant : non
+  keyVaultRefs: inventory/keyvault-references.yml#sp-credentials   # références uniquement, aucune valeur
+  entraGroups:
+    admins: null   # [A_RENSEIGNER] Quoi : groupe Entra administrateur | Pourquoi : rôles du workspace (jamais un groupe du Global) | Qui : responsable du data product | Où : annuaire Entra KPMG France | Bloquant : non
+    contributors: null   # [A_RENSEIGNER] Quoi : groupe Entra contributeur | Pourquoi : rôles du workspace | Qui : responsable du data product | Où : annuaire Entra | Bloquant : non
+    viewers: null   # [A_RENSEIGNER] Quoi : groupe Entra lecteur | Pourquoi : rôles du workspace | Qui : responsable du data product | Où : annuaire Entra | Bloquant : non
+
+extensions: {}   # vide par défaut ; toute extension exige une justification et une validation sécurité
+
+traceability:
+  sources:
+    - "doc 1 — liste des workspaces par environnement"
+    - "doc 2 / doc 3 — contenu des dépôts (anciens deploy.py)"
+    - "configuration JSON du VNet fralzvnetdev1055"
+    - "Listing record_set par workspace (VF).xlsx"
+    - "PE managed listing (VF).xlsx"
+    - "Cartographie_Flux_Workspaces_Fabric.xlsx (onglets Matrice, Patterns & actions)"
+    - "Liste des interconnexions entre data products"
+    - "Service principal par environnement"
+    - "Key vault frfrkvdevdp0001 (export JSON + capture des secrets)"
+    - "capture des capacités Fabric"
+  validatedOn: null   # [A_RENSEIGNER] Quoi : date de validation | Pourquoi : traçabilité | Qui : responsable de validation | Où : revue du manifeste | Bloquant : non
+  validatedBy: null   # [A_RENSEIGNER] Quoi : responsable de validation | Pourquoi : traçabilité | Qui : équipe produit | Où : revue du manifeste | Bloquant : non
+  completeness: computed   # voir documentation/manifest-validation-report.md
+  globalTickets: [RITM6601337, RITM6601332, RITM6601335, RITM6601339]   # CONFIRMÉ : demandes de création des SPN (Service principal par environnement)

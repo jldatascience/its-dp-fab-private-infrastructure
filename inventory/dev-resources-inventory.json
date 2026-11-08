@@ -1,0 +1,259 @@
+{
+  "_meta": {
+    "generated": "2026-11-08",
+    "status": "Inventaire documentaire reconstitué à partir des pièces jointes — à remplacer par l’export de scripts/inventory-dev-azure.sh",
+    "sources": [
+      "doc 1 — liste des workspaces par environnement",
+      "doc 2 / doc 3 — contenu des dépôts (anciens deploy.py)",
+      "configuration JSON du VNet fralzvnetdev1055",
+      "Listing record_set par workspace (VF).xlsx",
+      "PE managed listing (VF).xlsx",
+      "Cartographie_Flux_Workspaces_Fabric.xlsx (onglets Matrice, Patterns & actions)",
+      "Liste des interconnexions entre data products",
+      "Service principal par environnement",
+      "Key vault frfrkvdevdp0001 (export JSON + capture des secrets)",
+      "capture des capacités Fabric",
+      "capture de la souscription FR-AZR-DP-DEV",
+      "DAG DMND0003667 Finance x CDG (29/04/2026)",
+      "README its-dp-fab-item-framework-managed (29/10/2026)",
+      "Liste des dépôts et des workspaces DEV/ITG/PPR/PRD communiquée le 08/11/2026",
+      "README, CHANGELOG et CICD/ du dépôt its-dp-fab-adp-referentiel-managed (03/11/2026)",
+      "liste des gateways utilisées (Recap_connexions_gateway_Fabric, onglets Gateways et Connexions)",
+      "fiche « ID de la zone DNS privée à utiliser » (zone privatelink.fabric.microsoft.com du hub)",
+      "captures du portail Azure « Edit subnet » snet-kpmg-backend",
+      "indication du 08/11/2026 : dépôt its-dp-fab-adp-gds-managed",
+      "noms et ID des workspaces GDS communiqués le 08/11/2026",
+      "ID des workspaces Référentiel communiqués le 08/11/2026",
+      "Inventaire_ressources_Azure_Fabric (onglet Ressources, RG frappdevdp0001)",
+      "README, CHANGELOG et CICD/ du dépôt its-dp-fab-adp-opendata-managed (01/11/2026)"
+    ]
+  },
+  "subscription": {
+    "name": "FR-AZR-DP-DEV",
+    "id": "0c53c37e-2ed2-4d58-b147-8f80763294ce",
+    "tenant": "deff24bb-2089-4400-8c8e-f71e680378b2",
+    "management_group": "FR-MG-CH-Root-BYOS",
+    "offer": "Enterprise Agreement (MS-AZR-0017P)"
+  },
+  "resourceGroup": {
+    "name": "frappdevdp0001",
+    "location": "francecentral",
+    "tags": {
+      "env": "dev",
+      "platform": "d&a",
+      "service": "dataplatform",
+      "app": "dataplatform"
+    }
+  },
+  "vnet": {
+    "name": "fralzvnetdev1055",
+    "location": "westeurope",
+    "addressPrefixes": [
+      "172.23.20.0/24"
+    ],
+    "dnsServers": [
+      "10.113.192.100"
+    ],
+    "tags": {
+      "app": "dataplatform",
+      "env": "dev",
+      "platform": "d&a",
+      "service": "dataplatform"
+    },
+    "subnet": {
+      "addressPrefixes": [
+        "172.23.20.0/24"
+      ],
+      "purpose": "PrivateEndpoints",
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "defaultOutboundAccess": false,
+      "name": "snet-kpmg-backend",
+      "id": "/subscriptions/0c53c37e-2ed2-4d58-b147-8f80763294ce/resourceGroups/frappdevdp0001/providers/Microsoft.Network/virtualNetworks/fralzvnetdev1055/subnets/snet-kpmg-backend",
+      "routeTable": "fr_rt_fralzvnetdev1055",
+      "nsg": null,
+      "natGateway": null,
+      "serviceEndpoints": [],
+      "delegations": [],
+      "portalSubnetPurpose": "Default"
+    },
+    "peerings": [
+      {
+        "name": "fralzvnetdev1055yyfralzvnet0001",
+        "remoteVnetId": "/subscriptions/1fe4e122-3c20-4707-88ed-3ce3fa2e259f/resourceGroups/frinfalzconnectivityhub0001/providers/Microsoft.Network/virtualNetworks/fralzvnet0001",
+        "remoteAddressSpace": [
+          "10.113.192.0/22"
+        ],
+        "state": "Connected",
+        "sync": "FullyInSync",
+        "allowForwardedTraffic": true,
+        "useRemoteGateways": false
+      }
+    ],
+    "privateEndpointIpConfigurations": {
+      "FRFRAPEFWDEVDPADPGDSMANAGED0001-1-NIC": 5,
+      "FRFRAPEFWDEVDPADPIBSMANAGED0001-1-NIC": 6,
+      "FRFRAPEFWDEVDPADPMDSMANAGED0001-1-NIC": 6,
+      "FRFRAPEFWDEVDPADPREFERENTIELMANAGED0001-1-NIC": 5,
+      "FRFRAPEFWDEVDPBDPCENTREDEPROFITMANAGED0001-1-NIC": 6,
+      "FRFRAPEFWDEVDPBDPCOLLABORATEURMANAGED0001-1-NIC": 6,
+      "FRFRAPEFWDEVDPBDPCOMPTEMANAGED0001-1-NIC": 6,
+      "FRFRAPEFWDEVDPBDPENGAGEMENTMANAGED0001-1-NIC": 6,
+      "FRFRAPEFWDEVDPBDPFACTURECLIENTMANAGED0001-1-NIC": 6,
+      "FRFRAPEFWDEVDPBDPPERFORMANCEFINANCIEREMANAGED0001-1-NIC": 6,
+      "FRFRAPEFWDEVDPDANIELSMANAGED0001-1-NIC": 5,
+      "FRFRAPEFWDEVDPFRAMEWORKMANAGED0001-1-NIC": 5,
+      "FRFRAPEFWDEVDPHOUSSEMMANAGED0001-1-NIC": 5,
+      "FRFRAPEFWDEVDPUCSREPORTINGFEESETWIPMANAGED0001-1-NIC": 5,
+      "FRFRAPEFWDEVDPYASSINEMANAGED0001-1-NIC": 6,
+      "FRFRAPEKVDEVDP0001.NIC.90D6FD98-F532-4DB9-868B-2266F60BCBAA": 1
+    },
+    "usedPrivateIps": 85
+  },
+  "keyVault": {
+    "name": "frfrkvdevdp0001",
+    "location": "westeurope",
+    "sku": "Premium",
+    "rbac": true,
+    "purgeProtection": true,
+    "softDeleteDays": 90,
+    "networkAcls": {
+      "defaultAction": "Deny",
+      "bypass": "AzureServices"
+    },
+    "publicNetworkAccess": null,
+    "privateEndpoint": "FRFRAPEKVDEVDP0001",
+    "vaultUri": "https://frfrkvdevdp0001.vault.azure.net/",
+    "secretNames": [
+      "DEV-AZURE-CLIENT-ID",
+      "DEV-AZURE-CLIENT-SECRET",
+      "DEV-AZURE-TENANT-ID",
+      "ITG-AZURE-CLIENT-ID",
+      "ITG-AZURE-CLIENT-SECRET",
+      "ITG-AZURE-TENANT-ID",
+      "PPR-AZURE-CLIENT-ID",
+      "PPR-AZURE-CLIENT-SECRET",
+      "PPR-AZURE-TENANT-ID",
+      "PRD-AZURE-CLIENT-ID",
+      "PRD-AZURE-CLIENT-SECRET",
+      "PRD-AZURE-TENANT-ID"
+    ],
+    "tenantId": "deff24bb-2089-4400-8c8e-f71e680378b2",
+    "skuFamily": "A",
+    "accessPolicies": [],
+    "ipRules": [],
+    "virtualNetworkRules": [],
+    "enabledForDeployment": true,
+    "enabledForDiskEncryption": true,
+    "enabledForTemplateDeployment": true,
+    "privateEndpointConnection": "FRFRAPEKVDEVDP0001_7876db9a-d47d-48d8-8efc-62e2e75dc02e",
+    "secretsStatus": "Enabled (12/12)"
+  },
+  "privateDnsZone": {
+    "name": "privatelink.fabric.microsoft.com",
+    "subscription": "fr-connectivity",
+    "subscriptionId": "1fe4e122-3c20-4707-88ed-3ce3fa2e259f",
+    "resourceGroup": "frinfalzconnectivityprivatedns0001",
+    "location": "global",
+    "recordSets": 86,
+    "virtualNetworkLinks": 1,
+    "tags": {
+      "Status": "Managed by Terraform"
+    }
+  },
+  "gateways": [
+    "DP-FABRIC-GW-HORS-PROD",
+    "DP-FABRIC-GW-PROD",
+    "Gateway_prod"
+  ],
+  "privateLinkServices": [
+    "frfrpldevdpadpgdsmanaged0001",
+    "frfrpldevdpadpibsmanaged0001",
+    "frfrpldevdpadpmdsmanaged0001",
+    "frfrpldevdpadpreferentielmanaged0001",
+    "frfrpldevdpbdpcentredeprofitmanaged0001",
+    "frfrpldevdpbdpcollaborateurmanaged0001",
+    "frfrpldevdpbdpcomptemanaged0001",
+    "frfrpldevdpbdpengagementmanaged0001",
+    "frfrpldevdpbdpfactureclientmanaged0001",
+    "frfrpldevdpbdpperformancefinancieremanaged0001",
+    "frfrpldevdpdanielsmanaged0001",
+    "frfrpldevdpframeworkmanaged0001",
+    "frfrpldevdphoussemmanaged0001",
+    "frfrpldevdpucsreportingfeesetwipmanaged0001",
+    "frfrpldevdpyassinemanaged0001"
+  ],
+  "keyVaultPrivateEndpointNic": "FRFRAPEKVDEVDP0001.nic.90d6fd98-f532-4db9-868b-2266f60bcbaa",
+  "networkNamingOtherEnvironments": {
+    "ITG": {
+      "resourceGroup": "frappitgdp0001",
+      "vnet": "fralzvnetitg1055",
+      "subnet": "snet-kpmg-backend",
+      "routeTable": "fr_rt_fralzvnetitg1055"
+    },
+    "PPR": {
+      "resourceGroup": "frapppprdp0001",
+      "vnet": "fralzvnetppr1055",
+      "subnet": "snet-kpmg-backend",
+      "routeTable": "fr_rt_fralzvnetppr1055"
+    },
+    "PRD": {
+      "resourceGroup": "frappprddp0001",
+      "vnet": "fralzvnetprd1055",
+      "subnet": "snet-kpmg-backend",
+      "routeTable": "fr_rt_fralzvnetprd1055"
+    }
+  },
+  "capacities": {
+    "DEV": {
+      "name": "frfrfcdevdp0001",
+      "sku": "F16",
+      "id": "DC14404E-ABDA-4191-8A07-99980BEC2D41",
+      "note": "CONFIRMÉ (capture)"
+    },
+    "ITG": {
+      "name": "frfrfcdevdp0001",
+      "sku": "F16",
+      "id": null,
+      "note": "CONTRADICTION : capture = frfrfcdevdp0001 (DC14404E…) ; anciens deploy.py = 29CDC503-AA27-48E1-A41E-4D6AF4472F00"
+    },
+    "PPR": {
+      "name": "frfrfcdevdp0001",
+      "sku": "F16",
+      "id": null,
+      "note": "CONTRADICTION : capture = frfrfcdevdp0001 (DC14404E…) ; anciens deploy.py = 29CDC503-AA27-48E1-A41E-4D6AF4472F00"
+    },
+    "PRD": {
+      "name": "frfrfcprddp0001",
+      "sku": "F32",
+      "id": null,
+      "note": "Capacity ID absent de la capture ; anciens deploy.py = 8B3B9E06-C303-40FC-87B5-7FA949901720"
+    }
+  },
+  "armSample": {
+    "type": "Microsoft.Fabric/privateLinkServicesForFabric",
+    "apiVersion": "2024-06-01",
+    "name": "FRFRAPEDEVDP001-1",
+    "location": "global",
+    "workspaceId": "c09a9722-b729-4d52-83df-480f051d960e",
+    "note": "workspace absent des autres listings : à identifier"
+  },
+  "workspacesDev": {
+    "MDS": "a699158a-f604-431c-b9f4-aff776a02c5d",
+    "IBS": "4c55fb1e-4c8a-457c-8eea-26fd38cde682",
+    "Centre de Profit": "46c8f043-e4a2-4c6f-9591-35ad9c6d6006",
+    "Collaborateur": "7679a1ba-345d-46b0-a4d0-4bc05d065f3f",
+    "Compte": "f60f7870-63a5-456c-8db2-daa264c67114",
+    "Engagement": "eccf49e0-58e9-4fbf-8256-e446eebca01d",
+    "Facture Client": "dd280c49-24d1-43bf-b92b-c720be387a0d",
+    "DANIELS": "42463408-0fbe-47d5-93d1-d51019527925",
+    "HOUSSEM": "ce00f62a-2723-4164-9a9a-77840d5a64c1",
+    "YASSINE": "5a061fb6-bdf1-4221-beb6-8abcd5d129f7",
+    "Framework": "779f53bb-fc39-4c1a-a580-e9794416486b",
+    "Reporting Fees & WIP": "6bb479d1-2e8d-4037-89de-4753ea3da38a",
+    "Referentiel": "4c6b33a2-d61c-4c92-8cea-80eadcf277d2",
+    "Performance Engagement": "bd480b25-4e5f-4758-bcf8-2c229310b4c4",
+    "GDS": "69943001-74e6-49d2-a9be-b57abc8f4be9"
+  },
+  "managedPrivateEndpoints": 75
+}
