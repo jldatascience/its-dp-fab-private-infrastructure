@@ -214,14 +214,14 @@
     "ITG": {
       "name": "frfrfcdevdp0001",
       "sku": "F16",
-      "id": null,
-      "note": "CONTRADICTION : capture = frfrfcdevdp0001 (DC14404E…) ; anciens deploy.py = 29CDC503-AA27-48E1-A41E-4D6AF4472F00"
+      "id": "DC14404E-ABDA-4191-8A07-99980BEC2D41",
+      "note": "CONFIRMÉ (correction du 11/11/2026 : même capacité que DEV)"
     },
     "PPR": {
       "name": "frfrfcdevdp0001",
       "sku": "F16",
-      "id": null,
-      "note": "CONTRADICTION : capture = frfrfcdevdp0001 (DC14404E…) ; anciens deploy.py = 29CDC503-AA27-48E1-A41E-4D6AF4472F00"
+      "id": "DC14404E-ABDA-4191-8A07-99980BEC2D41",
+      "note": "CONFIRMÉ (correction du 11/11/2026 : même capacité que DEV)"
     },
     "PRD": {
       "name": "frfrfcprddp0001",

@@ -85,7 +85,7 @@ souscription, resource group, VNet, subnet, plage IP, DNS et peering d’ITG, PP
 
 | N° | Contradiction | Impact | Action |
 |---|---|---|---|
-| C1 | Capacité ITG/PPR : la capture indique frfrfcdevdp0001 (DC14404E-…), les anciens `deploy.py` 29CDC503-… ; PRD : 8B3B9E06-… sans correspondance dans la capture | Private Link dans la souscription de la capacité | Global : confirmer la capacité de chaque environnement |
+| C1 | Capacité ITG/PPR **résolue le 11/11/2026** : frfrfcdevdp0001 (DC14404E-ABDA-4191-8A07-99980BEC2D41), comme DEV. PRD : 8B3B9E06-… (anciens `deploy.py`) sans correspondance dans la capture | Private Link dans la souscription de la capacité | Global : confirmer la capacité PRD |
 | C2 | Plage DEV annoncée en septembre 172.23.63.0/27 sur fralzvnetdev1053 ; plage réelle 172.23.20.0/24 sur fralzvnetdev1055 | documentation obsolète | retenir l’export |
 | C3 | Resource group en francecentral, ressources en westeurope | convention de région | Mick : région de référence |
 | C4 | ~~Nom des Private Link~~ **résolu** : l’inventaire des ressources du RG frappdevdp0001 confirme `frfrpldevdp<token>managed0001` pour les 15 workspaces (type Microsoft.Fabric/privateLinkServicesForFabric, location Global) ; l’export ARM `FRFRAPEDEVDP001-1` (workspace c09a9722-…) n’y figure pas | aucun | aucune |

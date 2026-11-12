@@ -39,7 +39,7 @@ environments:
     workspaceName: "FR - DP - ITG - FAB - BDP - Campaign - MANAGED"   # CONFIRMÉ (Liste des dépôts et des workspaces DEV/ITG/PPR/PRD communiquée le 08/11/2026)
     workspaceId: null   # [A_RENSEIGNER] Quoi : ID du workspace | Pourquoi : cible du Private Link | Qui : équipe produit | Où : portail Fabric | Bloquant : oui
     status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
-    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : CONTRADICTION : capture = frfrfcdevdp0001 (DC14404E…) ; anciens deploy.py = 29CDC503-AA27-48E1-A41E-4D6AF4472F00 | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : capacité confirmée le 11/11/2026 : frfrfcdevdp0001 (DC14404E-ABDA-4191-8A07-99980BEC2D41), comme DEV | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
     gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
     existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
     plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026) ; jeton dérivé du nom du data product selon la même règle
@@ -50,7 +50,7 @@ environments:
     workspaceName: "FR - DP - PPR - FAB - BDP - Campaign - MANAGED"   # CONFIRMÉ (Liste des dépôts et des workspaces DEV/ITG/PPR/PRD communiquée le 08/11/2026)
     workspaceId: null   # [A_RENSEIGNER] Quoi : ID du workspace | Pourquoi : cible du Private Link | Qui : équipe produit | Où : portail Fabric | Bloquant : oui
     status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
-    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : CONTRADICTION : capture = frfrfcdevdp0001 (DC14404E…) ; anciens deploy.py = 29CDC503-AA27-48E1-A41E-4D6AF4472F00 | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : capacité confirmée le 11/11/2026 : frfrfcdevdp0001 (DC14404E-ABDA-4191-8A07-99980BEC2D41), comme DEV | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
     gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
     existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
     plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026) ; jeton dérivé du nom du data product selon la même règle

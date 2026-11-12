@@ -5,7 +5,7 @@
 1. **Frontière mutualisé / par workspace** : VNet, subnet, DNS, peering dans la configuration d’environnement ; Private Link, Private Endpoint, règles Fabric dans le manifeste. D’accord ?
 2. **Schéma officiel** du point d’entrée Data Platform : format, nom des champs, version, date de publication ?
 3. **Configuration réseau ITG, PPR, PRD** : qui obtient du Global la souscription, le VNet, le subnet et la plage IP (≈ 108 IP pour 18 workspaces, hors croissance) ?
-4. **Capacités** : quelle capacité pour ITG et PPR (contradiction frfrfcdevdp0001 / 29CDC503-…) ? Capacity ID de frfrfcprddp0001 ?
+4. **Capacités** : ITG et PPR sont sur frfrfcdevdp0001 (DC14404E-…, confirmé le 11/11/2026) ; quelle capacité pour PRD (frfrfcprddp0001 ou celle d'ID 8B3B9E06-… des anciens `deploy.py`) ?
 5. **Identité de déploiement Terraform** : SPN existants ou identité dédiée ? Fédération OIDC / WIF disponible ?
 6. **Reprise de DEV** : import des 16 PE et des MPE, ou DEV laissé hors Terraform ?
 
