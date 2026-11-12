@@ -8,7 +8,7 @@ Une matrice, pas une substitution : seul un nom confirmé dans une source pour u
 |---|---|---|---|
 | Workspace Fabric | `FR - DP - DEV - FAB - ADP - MDS - MANAGED` | `FR - DP - <ENV> - FAB - <ADP\|BDP> - <Nom> - MANAGED` | tiret simple ; UCS en « Managed » |
 | Workspace Power BI | `FR - DP - DEV - PBI - UCS - Reporting Fees & WIP - SelfBuild` | `… - PBI - UCS - <Nom> - Self{Build,Test,Use}` | |
-| Capacité | `frfrfcdevdp0001` | `frfr` + `fc` + `<env>` + `dp` + `0001` | PRD : `frfrfcprddp0001` confirmé |
+| Capacité | `frfrfcdevdp0001` | `frfr` + `fc` + `<env>` + `dp` + `0001` | DEV, ITG et PPR partagent `frfrfcdevdp0001` ; PRD : `gomfcaprodeuwfabricdataplatformfr0001`, hors de cette convention |
 | Resource group | `frappdevdp0001` | `fr` + `app` + `<env>` + `dp` + `0001` | |
 | VNet | `fralzvnetdev1055` | `fr` + `alz` + `vnet` + `<env>` + n° | numéro attribué par le Global |
 | Route table | `fr_rt_fralzvnetdev1055` | `fr_rt_` + VNet | |
@@ -24,7 +24,7 @@ Une matrice, pas une substitution : seul un nom confirmé dans une source pour u
 | Ressource | DEV | ITG | PPR | PRD |
 |---|---|---|---|---|
 | Workspaces | CONFIRMÉ | CONFIRMÉ (doc 1) | CONFIRMÉ | CONFIRMÉ |
-| Capacité | frfrfcdevdp0001 | 🔴 contradiction C1 | 🔴 contradiction C1 | frfrfcprddp0001 (ID manquant) |
+| Capacité | frfrfcdevdp0001 | frfrfcdevdp0001 | frfrfcdevdp0001 | gomfcaprodeuwfabricdataplatformfr0001 |
 | Souscription | FR-AZR-DP-DEV | 🔴 manquant | 🔴 manquant | 🔴 manquant |
 | Resource group | frappdevdp0001 | frappitgdp0001 | frapppprdp0001 | frappprddp0001 |
 | VNet | fralzvnetdev1055 | fralzvnetitg1055 | fralzvnetppr1055 | fralzvnetprd1055 |
@@ -37,7 +37,7 @@ Une matrice, pas une substitution : seul un nom confirmé dans une source pour u
 | SPN | FR-DEV-… | FR-QA-… | FR-STAG-… | FR-PROD-… |
 | Connexions | `<OBJET>_DEV_DP_FABRIC` | `<OBJET>_ITG_DP_FABRIC` (convention) | idem | idem |
 
-**Règle (décision du 08/11/2026)** : les noms du Private Endpoint, du Private Link et des MPE en ITG, PPR et PRD reprennent la nomenclature DEV, en remplaçant seulement le code d’environnement (`DEV` → `ITG`, `PPR`, `PRD` ; en minuscules pour le Private Link). Le jeton du data product est identique dans les 4 environnements (Performance Engagement garde `BDPPERFORMANCEFINANCIERE`). Pour les data products sans ressource DEV, le jeton suit la même règle : catégorie + nom en majuscules, sans espace ni accent (`ADPSIRENE`, `BDPCOMPTEENGAGE`, `BDPOPPORTUNITE`, `BDPCONTACT`, `BDPLEAD`, `BDPCAMPAIGN`). Les noms figurent dans `plannedResources` de chaque manifeste. La même règle s’applique au resource group, au VNet, au subnet et à la route table (`frapp<env>dp0001`, `fralzvnet<env>1055`, `snet-kpmg-backend`, `fr_rt_fralzvnet<env>1055`), le numéro 1055 du VNet étant repris tel quel. Restent au Global : souscription, plage IP, DNS et peering.
+**Règle (décision du 08/11/2026)** : les noms du Private Endpoint, du Private Link et des MPE en ITG, PPR et PRD reprennent la nomenclature DEV, en remplaçant seulement le code d’environnement (`DEV` → `ITG`, `PPR`, `PRD` ; en minuscules pour le Private Link). Le jeton du data product est identique dans les 4 environnements (Performance Engagement garde `BDPPERFORMANCEFINANCIERE`). Pour les data products sans ressource DEV, le jeton suit la même règle : catégorie + nom en majuscules, sans espace ni accent (`ADPSIRENE`, `BDPOPPORTUNITE`, `BDPCONTACT`, `BDPLEAD`, `BDPCAMPAIGN`). Les noms figurent dans `plannedResources` de chaque manifeste. La même règle s’applique au resource group, au VNet, au subnet et à la route table (`frapp<env>dp0001`, `fralzvnet<env>1055`, `snet-kpmg-backend`, `fr_rt_fralzvnet<env>1055`), le numéro 1055 du VNet étant repris tel quel. Restent au Global : souscription, plage IP, DNS et peering.
 
 ## 3. ADP Référentiel
 
@@ -55,7 +55,6 @@ Source : `config.yml` et `dependencies.yml` du dépôt its-dp-fab-adp-referentie
 | Dépôt | Workspace (`<ENV>` = DEV, ITG, PPR, PRD) |
 |---|---|
 | its-dp-fab-adp-sirene-managed | FR - DP - <ENV> - FAB - ADP - Sirene - MANAGED |
-| its-dp-fab-bdp-compte-engage-managed | FR - DP - <ENV> - FAB - BDP - Compte Engage - MANAGED |
 | its-dp-fab-bdp-opportunite-managed | FR - DP - <ENV> - FAB - BDP - Opportunite - MANAGED |
 | its-dp-fab-bdp-contact-managed | FR - DP - <ENV> - FAB - BDP - Contact - MANAGED |
 | its-dp-fab-bdp-lead-managed | FR - DP - <ENV> - FAB - BDP - Lead - MANAGED |
@@ -63,7 +62,7 @@ Source : `config.yml` et `dependencies.yml` du dépôt its-dp-fab-adp-referentie
 | its-dp-fab-adp-gds-managed | FR - DP - <ENV> - FAB - ADP - GDS - MANAGED (noms et ID communiqués le 08/11/2026 pour les 4 environnements) |
 | its-dp-fab-adp-opendata-managed | FR - DP - <ENV> - FAB - ADP - OPENDATA - MANAGED — **non privatisé** (données open source) |
 
-Noms sans accent (« Compte Engage », « Opportunite ») et tiret simple, comme communiqués. Aucun PE en DEV : le jeton de leurs ressources Azure (`FRFRAPEFWDEVDP<TOKEN>MANAGED0001-1`) reste à fixer avec Mick.
+Noms sans accent (« Opportunite ») et tiret simple, comme communiqués. Aucun PE en DEV : le jeton de leurs ressources Azure (`FRFRAPEFWDEVDP<TOKEN>MANAGED0001-1`) reste à fixer avec Mick.
 
 ## 5. Gateways et connexions
 

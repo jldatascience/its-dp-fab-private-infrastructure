@@ -18,7 +18,7 @@ dataProduct:
   category: adp
   repository: its-dp-fab-adp-gds-managed   # CONFIRMÉ (indication du 08/11/2026 : dépôt its-dp-fab-adp-gds-managed)
   sourceApplication: null   # [A_RENSEIGNER] Quoi : application ou base source de GDS | Pourquoi : règle P1 (gateway) sur le Framework et connexion <OBJET>_<ENV>_DP_FABRIC | Qui : équipe produit | Où : DAG, inventaire 02_fab_cli.py (connexions, gateways) | Bloquant : non
-  owner: null   # [A_RENSEIGNER] Quoi : groupe Entra propriétaire du data product | Pourquoi : approbation des MPE entrants, gouvernance | Qui : responsable du data product / Alexandre | Où : annuaire Entra KPMG France | Bloquant : oui
+  owner: "FR-SG AAD ITS DAS Fabric Admin"   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026, colonne « Groupe Entra ID qui approuve les MPE entrants », identique pour les 80 workspaces)
   responsibleTeam: null   # [A_RENSEIGNER] Quoi : équipe responsable | Pourquoi : escalade et support | Qui : équipe produit | Où : organisation Data Platform | Bloquant : non
   dagReference: null   # [A_RENSEIGNER] Quoi : référence du DAG du data product | Pourquoi : contrôle DAG / manifeste / infra annoncé par Mick ; le DAG DMND0003667 décrit le Data Domain Contrôle de Gestion, pas ce workspace | Qui : architecte | Où : référentiel des DAG | Bloquant : oui
   classification: null   # [A_RENSEIGNER] Quoi : classification des données (public, interne, confidentiel, restreint) | Pourquoi : valeurs standard et labels MIP | Qui : responsable du data product / sécurité | Où : politique de classification KPMG | Bloquant : oui
@@ -41,7 +41,7 @@ environments:
     workspaceName: "FR - DP - ITG - FAB - ADP - GDS - MANAGED"   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
     workspaceId: 071742c7-55c7-4fda-9ee2-a6eab2c7951c   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
     status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
-    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : capacité confirmée le 11/11/2026 : frfrfcdevdp0001 (DC14404E-ABDA-4191-8A07-99980BEC2D41), comme DEV | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    capacityRef: frfrfcdevdp0001   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026) — ID DC14404E-ABDA-4191-8A07-99980BEC2D41
     gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
     existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
     plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026)
@@ -52,7 +52,7 @@ environments:
     workspaceName: "FR - DP - PPR - FAB - ADP - GDS - MANAGED"   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
     workspaceId: 87241b71-d6a3-42ea-b450-5386e20dc2a2   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
     status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
-    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : capacité confirmée le 11/11/2026 : frfrfcdevdp0001 (DC14404E-ABDA-4191-8A07-99980BEC2D41), comme DEV | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    capacityRef: frfrfcdevdp0001   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026) — ID DC14404E-ABDA-4191-8A07-99980BEC2D41
     gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
     existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
     plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026)
@@ -63,7 +63,7 @@ environments:
     workspaceName: "FR - DP - PRD - FAB - ADP - GDS - MANAGED"   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
     workspaceId: 55038f5c-c713-4e41-90c5-29df514739cf   # CONFIRMÉ (noms et ID des workspaces GDS communiqués le 08/11/2026)
     status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
-    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcprddp0001, F32) | Pourquoi : Capacity ID absent de la capture ; anciens deploy.py = 8B3B9E06-C303-40FC-87B5-7FA949901720 | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    capacityRef: gomfcaprodeuwfabricdataplatformfr0001   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026) — ID 8B3B9E06-C303-40FC-87B5-7FA949901720
     gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
     existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
     plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026)

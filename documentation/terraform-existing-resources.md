@@ -8,7 +8,7 @@
 |---|---|---|
 | DEV | 15 workspaces privatisés à la main, 16 PE, 75 lignes MPE | **import** (ou documentation seule si DEV reste hors Terraform — à décider) |
 | ITG, PPR | workspaces existants (ID à vérifier), privatisation inconnue | inventaire, puis création des ressources réseau par Terraform |
-| PRD | idem ; capacité frfrfcprddp0001 | idem, après validation en PPR |
+| PRD | idem ; capacité gomfcaprodeuwfabricdataplatformfr0001 | idem, après validation en PPR |
 
 ## 2. Procédure
 

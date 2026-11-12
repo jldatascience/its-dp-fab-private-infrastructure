@@ -53,6 +53,6 @@ La couleur est produite par le rapport HTML, le Markdown et le classeur Excel ; 
 | Manifeste actif | Suivi seulement (`inventory/data-products-tracking.csv`) |
 |---|---|
 | ADP MDS, Référentiel, IBS, Sirene, GDS | OPENDATA (non privatisé : données open source) |
-| BDP Collaborateur, Compte, Centre de Profit, Engagement, Facture Client, Performance Engagement, Compte Engagé, Opportunité, Contact, Lead, Campaign | |
+| BDP Collaborateur, Compte, Centre de Profit, Engagement, Facture Client, Performance Engagement, Opportunité, Contact, Lead, Campaign | |
 | Framework Items | |
 | UCS Reporting Fees & WIP | |

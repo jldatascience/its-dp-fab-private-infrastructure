@@ -53,6 +53,8 @@ Connexion cloud : `DP-Fabric-Global-APR` (Pipelines de données Fabric, Service 
 | UCS Reporting Fees & WIP | 6bb479d1-2e8d-4037-89de-4753ea3da38a | FRFRAPEFWDEVDPUCSREPORTINGFEESETWIPMANAGED0001-1 | 5 | oui |
 | DEV Daniels / Houssem / Yassine | 42463408-… / ce00f62a-… / 5a061fb6-… | FRFRAPEFWDEVDP<NOM>MANAGED0001-1 | 5 / 5 / 6 | oui |
 
+DEV Jalel (ajouté le 12/11/2026) : workspace personnel `FR - DP - DEV - FAB - DEV - JALEL - MANAGED`, **en cours de privatisation** (PE prévu `FRFRAPEFWDEVDPJALELMANAGED0001-1`, capacité `frfrfcdevdp0001`) ; absent des exports DEV (aucun PE, DNS ni MPE à ce jour) ; ID à relever avec `02_fab_cli.py --env DEV`.
+
 Noms exacts : `inventory/network-components.csv`, `inventory/dns-records-dev.csv`. Total : 85 IP utilisées sur 251 utilisables (Key Vault compris).
 
 ## 3. Managed Private Endpoints (75 lignes)
@@ -74,5 +76,5 @@ Détail : `inventory/managed-private-endpoints-dev.csv`.
 - Aucun NSG sur le subnet : la sécurité repose sur les politiques Fabric et le firewall du hub (à confirmer par le Global).
 - Workspaces Power BI du UCS : non privatisés en DEV.
 - ADP OPENDATA : **hors privatisation** (données open source, décision du 08/11/2026) ; le listing nommait un PE et un Private Link qui n’ont jamais été créés.
-- Workspaces ajoutés le 08/11/2026, **non privatisés en DEV** (aucun PE, DNS ni MPE) : ADP Sirene ; BDP Compte Engage, Opportunite, Contact, Lead, Campaign. Leur privatisation DEV demandera environ 30 à 36 IP de plus (5 à 6 par workspace) dans le subnet, qui en a 166 de libres.
+- Workspaces ajoutés le 08/11/2026, **non privatisés en DEV** (aucun PE, DNS ni MPE) : ADP Sirene ; BDP Opportunite, Contact, Lead, Campaign. Leur privatisation DEV demandera environ 25 à 30 IP de plus (5 à 6 par workspace) dans le subnet, qui en a 166 de libres.
 - L’état réseau de ITG, PPR et PRD n’est pas connu : aucun export.

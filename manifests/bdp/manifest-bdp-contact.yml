@@ -17,7 +17,7 @@ dataProduct:
   name: "Contact"
   category: bdp
   repository: its-dp-fab-bdp-contact-managed   # CONFIRMÉ (Liste des dépôts et des workspaces DEV/ITG/PPR/PRD communiquée le 08/11/2026)
-  owner: null   # [A_RENSEIGNER] Quoi : groupe Entra propriétaire du data product | Pourquoi : approbation des MPE entrants, gouvernance | Qui : responsable du data product / Alexandre | Où : annuaire Entra KPMG France | Bloquant : oui
+  owner: "FR-SG AAD ITS DAS Fabric Admin"   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026, colonne « Groupe Entra ID qui approuve les MPE entrants », identique pour les 80 workspaces)
   responsibleTeam: null   # [A_RENSEIGNER] Quoi : équipe responsable | Pourquoi : escalade et support | Qui : équipe produit | Où : organisation Data Platform | Bloquant : non
   dagReference: null   # [A_RENSEIGNER] Quoi : référence du DAG du data product | Pourquoi : contrôle DAG / manifeste / infra annoncé par Mick ; le DAG DMND0003667 décrit le Data Domain Contrôle de Gestion, pas ce workspace | Qui : architecte | Où : référentiel des DAG | Bloquant : oui
   classification: null   # [A_RENSEIGNER] Quoi : classification des données (public, interne, confidentiel, restreint) | Pourquoi : valeurs standard et labels MIP | Qui : responsable du data product / sécurité | Où : politique de classification KPMG | Bloquant : oui
@@ -26,9 +26,9 @@ dataProduct:
 environments:
   DEV:
     workspaceName: "FR - DP - DEV - FAB - BDP - Contact - MANAGED"   # CONFIRMÉ (Liste des dépôts et des workspaces DEV/ITG/PPR/PRD communiquée le 08/11/2026)
-    workspaceId: null   # [A_RENSEIGNER] Quoi : ID du workspace DEV | Pourquoi : cible du Private Link | Qui : équipe produit | Où : scripts/inventory-dev-fabric.py --env DEV ou CICD/ref_dynamique/02_fab_cli.py --env DEV | Bloquant : oui
+    workspaceId: 8867ea6f-9e85-4cce-8662-b06fe9a116bd   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026)
     status: existing-not-privatized   # [A_VERIFIER] Quoi : existence du workspace DEV et absence de privatisation | Pourquoi : aucun Private Endpoint ni enregistrement DNS dans les exports DEV : privatisation à créer, pas à importer | Qui : équipe produit | Où : portail Fabric, export VNet | Bloquant : oui
-    capacityRef: null   # [A_VERIFIER] Quoi : capacité du workspace DEV (frfrfcdevdp0001 attendue) | Pourquoi : Private Link dans la souscription de la capacité | Qui : équipe produit | Où : portail Fabric (paramètres du workspace) | Bloquant : oui
+    capacityRef: frfrfcdevdp0001   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026) — ID DC14404E-ABDA-4191-8A07-99980BEC2D41
     gitIntegration: true   # cible : develop, dossier fabric — état actuel non communiqué
     existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
     plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026) ; jeton dérivé du nom du data product selon la même règle
@@ -37,9 +37,9 @@ environments:
       managedPrivateEndpointPattern: FRFRAPEFWDEVDP<TOKEN_CIBLE>MANAGED0001-<n>   # suffixe -1 réservé au PE entrant
   ITG:
     workspaceName: "FR - DP - ITG - FAB - BDP - Contact - MANAGED"   # CONFIRMÉ (Liste des dépôts et des workspaces DEV/ITG/PPR/PRD communiquée le 08/11/2026)
-    workspaceId: null   # [A_RENSEIGNER] Quoi : ID du workspace | Pourquoi : cible du Private Link | Qui : équipe produit | Où : portail Fabric | Bloquant : oui
+    workspaceId: 3455b36e-8986-4915-b704-e3962fe3e4d5   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026)
     status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
-    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : capacité confirmée le 11/11/2026 : frfrfcdevdp0001 (DC14404E-ABDA-4191-8A07-99980BEC2D41), comme DEV | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    capacityRef: frfrfcdevdp0001   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026) — ID DC14404E-ABDA-4191-8A07-99980BEC2D41
     gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
     existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
     plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026) ; jeton dérivé du nom du data product selon la même règle
@@ -48,9 +48,9 @@ environments:
       managedPrivateEndpointPattern: FRFRAPEFWITGDP<TOKEN_CIBLE>MANAGED0001-<n>   # suffixe -1 réservé au PE entrant
   PPR:
     workspaceName: "FR - DP - PPR - FAB - BDP - Contact - MANAGED"   # CONFIRMÉ (Liste des dépôts et des workspaces DEV/ITG/PPR/PRD communiquée le 08/11/2026)
-    workspaceId: null   # [A_RENSEIGNER] Quoi : ID du workspace | Pourquoi : cible du Private Link | Qui : équipe produit | Où : portail Fabric | Bloquant : oui
+    workspaceId: 54178dfc-0c5e-4a86-8f4b-c9f287eb8d29   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026)
     status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
-    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : capacité confirmée le 11/11/2026 : frfrfcdevdp0001 (DC14404E-ABDA-4191-8A07-99980BEC2D41), comme DEV | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    capacityRef: frfrfcdevdp0001   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026) — ID DC14404E-ABDA-4191-8A07-99980BEC2D41
     gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
     existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
     plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026) ; jeton dérivé du nom du data product selon la même règle
@@ -59,9 +59,9 @@ environments:
       managedPrivateEndpointPattern: FRFRAPEFWPPRDP<TOKEN_CIBLE>MANAGED0001-<n>   # suffixe -1 réservé au PE entrant
   PRD:
     workspaceName: "FR - DP - PRD - FAB - BDP - Contact - MANAGED"   # CONFIRMÉ (Liste des dépôts et des workspaces DEV/ITG/PPR/PRD communiquée le 08/11/2026)
-    workspaceId: null   # [A_RENSEIGNER] Quoi : ID du workspace | Pourquoi : cible du Private Link | Qui : équipe produit | Où : portail Fabric | Bloquant : oui
+    workspaceId: b426f583-9a6a-44d0-9cbf-6d9680412ca8   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026)
     status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
-    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcprddp0001, F32) | Pourquoi : Capacity ID absent de la capture ; anciens deploy.py = 8B3B9E06-C303-40FC-87B5-7FA949901720 | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    capacityRef: gomfcaprodeuwfabricdataplatformfr0001   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026) — ID 8B3B9E06-C303-40FC-87B5-7FA949901720
     gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
     existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
     plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026) ; jeton dérivé du nom du data product selon la même règle

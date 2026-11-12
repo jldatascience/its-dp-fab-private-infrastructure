@@ -20,7 +20,7 @@ dataProduct:
   formerName: "Performance Financière"   # CONFIRMÉ (08/11/2026) : simple renommage du workspace, même workspace et même ID
   azureResourceToken: BDPPERFORMANCEFINANCIERE   # CONFIRMÉ : les ressources Azure DEV (PE, Private Link, MPE) gardent l’ancien nom, non renommable ; à conserver tel quel pour l’import Terraform
   newResourceToken: BDPPERFORMANCEFINANCIERE   # nomenclature DEV transposée (décision du 08/11/2026) : même jeton dans les 4 environnements
-  owner: null   # [A_RENSEIGNER] Quoi : groupe Entra propriétaire du data product | Pourquoi : approbation des MPE entrants, gouvernance | Qui : responsable du data product / Alexandre | Où : annuaire Entra KPMG France | Bloquant : oui
+  owner: "FR-SG AAD ITS DAS Fabric Admin"   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026, colonne « Groupe Entra ID qui approuve les MPE entrants », identique pour les 80 workspaces)
   responsibleTeam: null   # [A_RENSEIGNER] Quoi : équipe responsable | Pourquoi : escalade et support | Qui : équipe produit | Où : organisation Data Platform | Bloquant : non
   dagReference: null   # [A_RENSEIGNER] Quoi : référence du DAG du data product | Pourquoi : contrôle DAG / manifeste / infra annoncé par Mick ; le DAG DMND0003667 décrit le Data Domain Contrôle de Gestion, pas ce workspace | Qui : architecte | Où : référentiel des DAG | Bloquant : oui
   classification: null   # [A_RENSEIGNER] Quoi : classification des données (public, interne, confidentiel, restreint) | Pourquoi : valeurs standard et labels MIP | Qui : responsable du data product / sécurité | Où : politique de classification KPMG | Bloquant : oui
@@ -43,7 +43,7 @@ environments:
     workspaceName: "FR - DP - ITG - FAB - BDP - Performance Engagement - MANAGED"   # CONFIRMÉ (doc 1 — liste des workspaces par environnement)
     workspaceId: 502b0cbf-ce8c-43fa-8d84-4e6f3bdc08d6   # CONFIRMÉ (ancien deploy.py, doc 2 / doc 3 — contenu des dépôts (anciens deploy.py) ; exactitude confirmée le 08/11/2026)
     status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
-    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : capacité confirmée le 11/11/2026 : frfrfcdevdp0001 (DC14404E-ABDA-4191-8A07-99980BEC2D41), comme DEV | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    capacityRef: frfrfcdevdp0001   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026) — ID DC14404E-ABDA-4191-8A07-99980BEC2D41
     gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
     existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
     plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026)
@@ -54,7 +54,7 @@ environments:
     workspaceName: "FR - DP - PPR - FAB - BDP - Performance Engagement - MANAGED"   # CONFIRMÉ (doc 1 — liste des workspaces par environnement)
     workspaceId: f83b9a1e-4034-412f-ab29-9cf587ffb4e5   # CONFIRMÉ (ancien deploy.py, doc 2 / doc 3 — contenu des dépôts (anciens deploy.py) ; exactitude confirmée le 08/11/2026)
     status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
-    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcdevdp0001, F16) | Pourquoi : capacité confirmée le 11/11/2026 : frfrfcdevdp0001 (DC14404E-ABDA-4191-8A07-99980BEC2D41), comme DEV | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    capacityRef: frfrfcdevdp0001   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026) — ID DC14404E-ABDA-4191-8A07-99980BEC2D41
     gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
     existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
     plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026)
@@ -65,7 +65,7 @@ environments:
     workspaceName: "FR - DP - PRD - FAB - BDP - Performance Engagement - MANAGED"   # CONFIRMÉ (doc 1 — liste des workspaces par environnement)
     workspaceId: 0f91a252-3f80-41cb-8353-4a15a5cf3f83   # CONFIRMÉ (ancien deploy.py, doc 2 / doc 3 — contenu des dépôts (anciens deploy.py) ; exactitude confirmée le 08/11/2026)
     status: existing-not-privatized   # [A_VERIFIER] Quoi : existence et état du workspace | Pourquoi : un workspace existant est privatisé, pas recréé | Qui : équipe produit | Où : API Fabric | Bloquant : oui
-    capacityRef: null   # [A_CONFIRMER_GLOBAL] Quoi : capacité de l’environnement (frfrfcprddp0001, F32) | Pourquoi : Capacity ID absent de la capture ; anciens deploy.py = 8B3B9E06-C303-40FC-87B5-7FA949901720 | Qui : Global / responsable des capacités | Où : portail d’administration Fabric | Bloquant : oui
+    capacityRef: gomfcaprodeuwfabricdataplatformfr0001   # CONFIRMÉ (liste des workspaces par environnement, 12/11/2026) — ID 8B3B9E06-C303-40FC-87B5-7FA949901720
     gitIntegration: false   # seuls les workspaces DEV sont synchronisés avec Git
     existingResources: {}   # aucune ressource réseau existante connue pour cet environnement
     plannedResources:   # nomenclature DEV transposée à l’environnement (décision du 08/11/2026)

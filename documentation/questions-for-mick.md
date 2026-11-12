@@ -5,7 +5,7 @@
 1. **Frontière mutualisé / par workspace** : VNet, subnet, DNS, peering dans la configuration d’environnement ; Private Link, Private Endpoint, règles Fabric dans le manifeste. D’accord ?
 2. **Schéma officiel** du point d’entrée Data Platform : format, nom des champs, version, date de publication ?
 3. **Configuration réseau ITG, PPR, PRD** : qui obtient du Global la souscription, le VNet, le subnet et la plage IP (≈ 108 IP pour 18 workspaces, hors croissance) ?
-4. **Capacités** : ITG et PPR sont sur frfrfcdevdp0001 (DC14404E-…, confirmé le 11/11/2026) ; quelle capacité pour PRD (frfrfcprddp0001 ou celle d'ID 8B3B9E06-… des anciens `deploy.py`) ?
+4. ~~**Capacités**~~ **résolu le 12/11/2026** : DEV, ITG et PPR sur frfrfcdevdp0001 (DC14404E-…), PRD sur gomfcaprodeuwfabricdataplatformfr0001 (8B3B9E06-…). Reste à connaître la souscription de la capacité PRD (Private Link).
 5. **Identité de déploiement Terraform** : SPN existants ou identité dédiée ? Fédération OIDC / WIF disponible ?
 6. **Reprise de DEV** : import des 16 PE et des MPE, ou DEV laissé hors Terraform ?
 
@@ -24,7 +24,7 @@
 ## Priorité 3 — périmètre
 
 13. Workspaces Power BI du UCS : privatisés ou non ? OPENDATA n’est pas privatisé (données open source) : si un workspace privatisé (Framework, BDP) doit y lire ou y écrire, quelle règle sortante l’autorise malgré l’Outbound Access Protection ?
-13 bis. Sirene, Compte Engagé, Opportunité, Contact, Lead, Campaign : privatisation DEV créée par Terraform dès la première exécution, ou manuellement comme pour les autres ? Jeton de nommage de leurs ressources ?
+13 bis. Sirene, Opportunité, Contact, Lead, Campaign : privatisation DEV créée par Terraform dès la première exécution, ou manuellement comme pour les autres ? Jeton de nommage de leurs ressources ?
 14. Référentiel : les workspaces ITG, PPR, PRD existent (préfixes d’ID connus) ; confirmer qu’ils sont privatisés tels quels (import) et l’ordre vis-à-vis du premier déploiement des items (dépôt encore vide).
 15. Tags standard (le Key Vault n’en a aucun) ?
 16. Les 12 contrôles normalisés : lesquels s’appliquent aux manifestes ?

@@ -16,9 +16,10 @@ Le dépôt `its-dp-fab-adp-referentiel-managed` (README, CHANGELOG et `CICD/` du
 
 ## Data products ajoutés le 08/11/2026
 
-Dépôts et workspaces des 4 environnements confirmés pour ADP Sirene et BDP Compte Engagé, Opportunité, Contact, Lead et Campaign
-(`FR - DP - <ENV> - FAB - ADP - Sirene - MANAGED`, `FR - DP - <ENV> - FAB - BDP - Compte Engage - MANAGED`, etc.).
-Aucun de ces 6 data products n’est privatisé en DEV : leurs manifestes portent 22 marqueurs bloquants (4 de plus pour DEV).
+Dépôts et workspaces des 4 environnements confirmés pour ADP Sirene et BDP Opportunité, Contact, Lead et Campaign
+(`FR - DP - <ENV> - FAB - ADP - Sirene - MANAGED`, `FR - DP - <ENV> - FAB - BDP - Opportunite - MANAGED`, etc.).
+BDP Compte Engagé, également communiqué le 08/11/2026, est supprimé le 12/11/2026 (voir plus bas).
+Aucun de ces 5 data products n’est privatisé en DEV : leurs manifestes portent 8 marqueurs bloquants (1 de plus pour DEV).
 
 ADP GDS : dépôt `its-dp-fab-adp-gds-managed` (indiqué le 08/11/2026) ; manifeste actif. Noms et ID des workspaces des 4 environnements
 communiqués le 08/11/2026 (DEV 69943001-…, ITG 071742c7-…, PPR 87241b71-…, PRD 55038f5c-…). Workspace DEV privatisé (PE, 5 IP)
@@ -27,14 +28,34 @@ mais sans enregistrement DNS listé (15 marqueurs bloquants).
 ADP OPENDATA : **non privatisé** (données open source, décision du 08/11/2026). Aucun manifeste ; suivi seulement dans
 `inventory/data-products-tracking.csv` (dépôt `its-dp-fab-adp-opendata-managed`).
 
+## Mise à jour du 12/11/2026
+
+Sources : liste des workspaces par environnement (« Suivi des workspaces », 80 workspaces), dépôts de la chaîne CI/CD
+initialisés sur le socle `its-dp-fab-cicd-common` v1.5.0, cartographie simplifiée des flux Microsoft Fabric.
+
+- ID des workspaces : les 4 environnements d'ADP Sirene et des BDP Campaign, Contact, Lead et Opportunité sont renseignés ;
+  tous les manifestes concordent avec la liste (nom, ID, capacité).
+- Capacités : `capacityRef` renseigné pour chaque environnement, `frfrfcdevdp0001` (DC14404E-…) pour DEV, ITG et PPR,
+  `gomfcaprodeuwfabricdataplatformfr0001` (8B3B9E06-…) pour PRD. La contradiction C1 est close.
+- Propriétaire : `owner` = `FR-SG AAD ITS DAS Fabric Admin`, groupe Entra qui approuve les MPE entrants (colonne de la liste,
+  identique pour les 80 workspaces).
+- Nouveaux manifestes : `manifest-ucs-hubspot.yml`, `manifest-ucs-referentiel.yml`, `manifest-ucs-mybsc-snow.yml` (workspaces
+  `FR - DP - <ENV> - FAB - UCS - <Nom> - Managed`, non privatisés en DEV). UCS Referentiel porte un flux P2 vers le Framework
+  (cartographie) ; il est signalé, car la matrice du socle CI/CD (R5) interdit toute dépendance de déploiement à un UCS.
+- MyBSC / SNOW : ID PPR `8f97d25d-…` (la liste donnait auparavant l'ID DEV).
+- BDP Compte Engagé : supprimé (ni dépôt ni workspace dans la liste ; décision du 12/11/2026, contradiction C17 close).
+  Son manifeste, ses 4 lignes d'inventaire et le flux P4 du Framework vers lui sont retirés.
+- `inventory/workspaces-by-environment.csv` et `tracking/Suivi_privatisation_Fabric.xlsx` sont alignés ; le rapport de validation
+  et `tracking/missing-parameters.csv` sont régénérés.
+
 ## Arborescence
 
 ```
 manifests/
   adp/        manifest-adp-mds.yml, manifest-adp-referentiel.yml, manifest-adp-ibs.yml, manifest-adp-sirene.yml, manifest-adp-gds.yml
-  bdp/        11 manifestes BDP (dont Compte Engagé, Opportunité, Contact, Lead, Campaign, ajoutés le 08/11/2026)
+  bdp/        10 manifestes BDP (dont Opportunité, Contact, Lead, Campaign, ajoutés le 08/11/2026)
   framework/  manifest-framework.yml
-  ucs/        manifest-ucs-reporting-fees-wip.yml
+  ucs/        manifest-ucs-reporting-fees-wip.yml, manifest-ucs-hubspot.yml, manifest-ucs-referentiel.yml, manifest-ucs-mybsc-snow.yml
   templates/  manifest-template.yml
 inventory/    inventaires DEV (JSON, CSV), références Key Vault et SPN, faits réseau
 scripts/      inventory-dev-azure.sh, inventory-dev-fabric.py, validate-manifests.py (lecture seule)

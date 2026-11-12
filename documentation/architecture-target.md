@@ -25,7 +25,7 @@ Le **déploiement des items Fabric** (`config.yml`, `parameter.yml`, `dependenci
 | 5 | Route table | partagé env. | `azurerm_route_table` | azurerm | Global | fr_rt_fralzvnetdev1055 | export | 3 | Global | 🔴 manquant | Global |
 | 6 | Peering hub | Global | `azurerm_virtual_network_peering` | azurerm | Global | fralzvnetdev1055yyfralzvnet0001 | export | 3 | Global | 🔴 manquant | Global |
 | 7 | Zone DNS privée | Global | `azurerm_private_dns_zone` | azurerm | Global | non exportée (DNS 10.113.192.100) | export VNet | 6 | Global | 🟠 | Global |
-| 8 | Capacité Fabric | partagé env. | `fabric_capacity` (données) | fabric | Global | frfrfcdevdp0001 | capture | 1 | Global | 🔴 C1 | Global |
+| 8 | Capacité Fabric | partagé env. | `fabric_capacity` (données) | fabric | Global | frfrfcdevdp0001 (DEV, ITG, PPR) ; gomfcaprodeuwfabricdataplatformfr0001 (PRD) | liste des workspaces | 1 | Global | C1 résolue | Global |
 | 9 | Workspace | par workspace | `fabric_workspace` | fabric | équipe produit / Mick | 18 workspaces de manifeste (12 privatisés en DEV) | DNS, doc 1 | 8 | — | 🟠 ID à vérifier | équipe produit |
 | 10 | Private Link service Fabric | par workspace | `Microsoft.Fabric/privateLinkServicesForFabric@2024-06-01` | azapi | module Mick | frfrpldevdp…managed0001 | listing | 9 | — | 🔴 | Mick |
 | 11 | Private Endpoint | par workspace | `azurerm_private_endpoint` (sous-ressource `workspace`) | azurerm | module Mick | FRFRAPEFWDEVDP…-1 | VNet | 4, 10 | auto (même tenant) | 🔴 | Mick |

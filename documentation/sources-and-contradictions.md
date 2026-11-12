@@ -85,7 +85,7 @@ souscription, resource group, VNet, subnet, plage IP, DNS et peering d’ITG, PP
 
 | N° | Contradiction | Impact | Action |
 |---|---|---|---|
-| C1 | Capacité ITG/PPR **résolue le 11/11/2026** : frfrfcdevdp0001 (DC14404E-ABDA-4191-8A07-99980BEC2D41), comme DEV. PRD : 8B3B9E06-… (anciens `deploy.py`) sans correspondance dans la capture | Private Link dans la souscription de la capacité | Global : confirmer la capacité PRD |
+| C1 | ~~Capacités~~ **résolue** : DEV, ITG et PPR sur frfrfcdevdp0001 (DC14404E-ABDA-4191-8A07-99980BEC2D41, 11/11/2026) ; PRD sur gomfcaprodeuwfabricdataplatformfr0001 (8B3B9E06-C303-40FC-87B5-7FA949901720, 12/11/2026). frfrfcprddp0001 n'est pas la capacité des workspaces PRD | Private Link dans la souscription de la capacité | Global : souscription de la capacité PRD |
 | C2 | Plage DEV annoncée en septembre 172.23.63.0/27 sur fralzvnetdev1053 ; plage réelle 172.23.20.0/24 sur fralzvnetdev1055 | documentation obsolète | retenir l’export |
 | C3 | Resource group en francecentral, ressources en westeurope | convention de région | Mick : région de référence |
 | C4 | ~~Nom des Private Link~~ **résolu** : l’inventaire des ressources du RG frappdevdp0001 confirme `frfrpldevdp<token>managed0001` pour les 15 workspaces (type Microsoft.Fabric/privateLinkServicesForFabric, location Global) ; l’export ARM `FRFRAPEDEVDP001-1` (workspace c09a9722-…) n’y figure pas | aucun | aucune |
@@ -96,8 +96,9 @@ souscription, resource group, VNet, subnet, plage IP, DNS et peering d’ITG, PP
 | C9 | Lectures BDP/UCS → ADP/BDP par MPE (75 MPE en DEV) non couvertes par P1–P6 | pattern manquant | P7 PROPOSÉ |
 | C10 | Collaborateur → GDS déclaré dans les interconnexions, aucun MPE | flux non configuré | à confirmer |
 | C11 | OPENDATA : **non privatisé** (données open source, décision du 08/11/2026), malgré un PE et un Private Link nommés dans le listing ; workspaces PBI SelfX au listing PE sans PE dans le VNet ; GDS (dépôt its-dp-fab-adp-gds-managed) avec PE mais sans DNS | périmètre | OPENDATA tranché ; PBI et DNS GDS à confirmer |
-| C16 | Sirene, Compte Engagé, Opportunité, Contact, Lead, Campaign : workspaces DEV confirmés le 08/11/2026 mais absents des exports VNet, DNS et MPE | privatisation DEV à créer (pas à importer) | relever les ID et la capacité avec `inventory-dev-fabric.py --env DEV` |
-| C17 | Compte Engagé « à voir s’il remplace le BDP Compte » | deux manifestes possibles pour un même périmètre | à arbitrer |
+| C16 | Sirene, Opportunité, Contact, Lead, Campaign : workspaces DEV confirmés le 08/11/2026 mais absents des exports VNet, DNS et MPE | privatisation DEV à créer (pas à importer) | relever les ID et la capacité avec `inventory-dev-fabric.py --env DEV` |
+| C17 | Compte Engagé « à voir s’il remplace le BDP Compte » ; absent de la liste des workspaces du 12/11/2026 et sans dépôt | deux manifestes possibles pour un même périmètre ; manifeste sans ID ni dépôt | **résolu le 12/11/2026** : BDP Compte Engagé supprimé (manifeste, 4 lignes d’inventaire, flux P4 du Framework, lignes du classeur de suivi) |
+| C20 | UCS Referentiel → Framework = P2 (Invoke Pipeline, cartographie) alors que la matrice v1.3 du socle CI/CD (R5) interdit toute dépendance de déploiement à un UCS | une référence au Framework resterait pointée sur DEV après déploiement | arbitrer : autoriser une dépendance Framework pour ce UCS ou retirer l'appel |
 | C12 | Key Vault sans tags (VNet et RG tagués) | conformité | Mick : tags standard |
 | C13 | ~~Hub : même tenant ou Global ?~~ **précisé** : la souscription 1fe4e122-… s’appelle **fr-connectivity** ; elle porte le VNet hub et la zone DNS privée, gérée par Terraform | responsabilité du peering et de la zone | confirmer l’équipe propriétaire de fr-connectivity |
 | C18 | Subnet : `purpose` = PrivateEndpoints dans l’export JSON, « Subnet purpose : Default » dans le portail | aucun (valeur calculée par Azure quand le subnet contient des PE) | aucune |

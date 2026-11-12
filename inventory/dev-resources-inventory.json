@@ -224,10 +224,10 @@
       "note": "CONFIRMÉ (correction du 11/11/2026 : même capacité que DEV)"
     },
     "PRD": {
-      "name": "frfrfcprddp0001",
-      "sku": "F32",
-      "id": null,
-      "note": "Capacity ID absent de la capture ; anciens deploy.py = 8B3B9E06-C303-40FC-87B5-7FA949901720"
+      "name": "gomfcaprodeuwfabricdataplatformfr0001",
+      "sku": null,
+      "id": "8B3B9E06-C303-40FC-87B5-7FA949901720",
+      "note": "CONFIRMÉ (liste des workspaces, 12/11/2026 ; anciens deploy.py identiques). SKU à confirmer : le F32 relevé sur une capture était attribué à frfrfcprddp0001, qui n'est pas la capacité des workspaces PRD"
     }
   },
   "armSample": {
